@@ -14,6 +14,7 @@ project/metals.sbt
 
 # scala 3
 .tasty
+.scalafmt.conf
 
 # sbt
 project/project/

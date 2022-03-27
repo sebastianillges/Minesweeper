@@ -3,7 +3,7 @@ import scala.util.{CommandLineParser as CLP}
 @main def main: Unit =
   println(eol + "Minesweeper matchfield:" + eol)
   // println(matchfield(8, 6, 3))
-  println(betterMatchfield(8, 6, 5))
+  println(betterMatchfield(8, 6, 3))
 
 def eol = sys.props("line.separator")
 
