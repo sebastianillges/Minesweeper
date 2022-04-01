@@ -20,3 +20,5 @@ def matchfield(height: Int = 3, width: Int = 3, cellWidth: Int = 3) =
       width
     ) * (cellWidth / 2)) * (height - 1)
     + lastHorizontal(cellWidth, width)
+
+// Test
