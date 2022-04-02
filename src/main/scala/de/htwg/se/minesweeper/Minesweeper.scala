@@ -1,6 +1,6 @@
 import de.htwg.se.minesweeper.model.*
 
-@main def main: Unit =
+@main def main(): Unit =
   println("Minesweeper matchfield: \n")
   var field = new Field(1, 4, Stone.Flag)
 
