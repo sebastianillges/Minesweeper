@@ -1,31 +1,37 @@
 package de.htwg.se.minesweeper.model
 
 case class Field(matrix: Matrix[Stone]):
-  def this(size: Int, filling: Stone) = this(new Matrix(size, filling))
-  val size = matrix.size
+  def this(sizeX: Int, sizeY: Int, filling: Stone) = this(new Matrix[Stone](sizeX, sizeY, filling))
 
-  def matchfield(height: Int = 3, cellWidth: Int = 3) =
-    (0 until size)
-      .map(vertical(_, cellWidth))
-      .mkString(firstHorizontal(cellWidth, size), horizontal(cellWidth, size), lastHorizontal(cellWidth, size))
+  val sizeX = matrix.sizeX
+  val sizeY = matrix.sizeY
+  val eol = sys.props("line.separator")
 
-  def firstHorizontal(cellWidth: Int = 3, cellNum: Int = 3) =
-    "┌" + (("─" * cellWidth) + "┬") * (cellNum - 1) + ("─" * cellWidth) + "┐" + eol
+  def firstHorizontal(cellWidth: Int = 3, col: Int = 3) =
+    "┌" + (("─" * cellWidth) + "┬") * (col - 1) + ("─" * cellWidth) + "┐" + eol
 
-  def horizontal(cellWidth: Int = 3, cellNum: Int = 3) =
-    "├" + (("─" * cellWidth) + "┼") * (cellNum - 1) + ("─" * cellWidth) + "┤" + eol
+  def horizontal(cellWidth: Int = 3, col: Int = 3) =
+    "├" + (("─" * cellWidth) + "┼") * (col - 1) + ("─" * cellWidth) + "┤" + eol
 
-  def lastHorizontal(cellWidth: Int = 3, cellNum: Int = 3) =
-    "└" + (("─" * cellWidth) + "┴") * (cellNum - 1) + ("─" * cellWidth) + "┘" + eol
+  def lastHorizontal(cellWidth: Int = 3, col: Int = 3) =
+    "└" + (("─" * cellWidth) + "┴") * (col - 1) + ("─" * cellWidth) + "┘" + eol
 
-  def vertical(cellHeight: Int = 3, cellNum: Int = 3) =
+  def vertical(cellWidth: Int = 3, row: Int = 3) =
     matrix
-      .rows(cellHeight)
+      .row(row - 1)
       .map(_.toString)
-      .map(" " * ((cellNum - 1) / 2) + _ + " " * ((cellNum - 1) / 2))
-      .mkString("|", "|", "|") + eol
+      .map(" " * (cellWidth / 2) + _ + " " * (cellWidth / 2))
+      .mkString("│", "│", "│") + eol
 
-  def eol = sys.props("line.separator")
-  def put(stone: Stone, x: Int, y: Int) = copy(matrix.replaceCell(x, y, stone))
+  def matchfield(col: Int = matrix.sizeY, row: Int = matrix.sizeX, cellSize: Int = 3) =
+    firstHorizontal(cellSize, col)
+      + vertical(cellSize, col) * (cellSize / 2)
+      + (horizontal(cellSize, col) + vertical(
+        cellSize,
+        col
+      ) * (cellSize / 2)) * (row - 1)
+      + lastHorizontal(cellSize, col)
 
   override def toString = matchfield()
+
+  def put(x: Int, y: Int, stone: Stone) = copy(matrix.replaceCell(x, y, stone))
