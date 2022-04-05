@@ -3,7 +3,7 @@ package de.htwg.se.minesweeper.model
 import scala.language.postfixOps
 
 case class Field(matrix: Matrix[Stone]):
-  def this(rows: Int = 3, cols: Int = 3, filling: Stone = Stone.Flag) =
+  def this(rows: Int = 3, cols: Int = 3, filling: Stone = Stone.NotTracked) =
     this(new Matrix[Stone](rows, cols, filling))
 
   val cols: Int = matrix.colNum
