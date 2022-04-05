@@ -5,4 +5,4 @@ import de.htwg.se.minesweeper.model.*
 
   val field = new Field(9, 9)
 
-  println(field)
+  println(field.firstHorizontal(3, 3))

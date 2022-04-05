@@ -18,22 +18,40 @@ class FieldSpec extends AnyWordSpec {
       val field = new Field()
       field.lastHorizontal() should be("└───┴───┴───┘" + field.eol)
     }
-    "have a scalable firstHorizontal" in {
-      val field = new Field()
-      field.firstHorizontal(1, 1) should be("┌─┐" + field.eol)
-      field.firstHorizontal(2, 1) should be("┌──┐" + field.eol)
-      field.firstHorizontal(1, 3) should be("┌─┬─┬─┐" + field.eol)
+    "have a scalable firstHorizontal of form '┌─┬─┐', '┌─┬─┬─┐', etc." when {
+      "cell width or number of cells differ" in {
+        val field = new Field()
+        field.firstHorizontal(1, 1) should be("┌─┐" + field.eol)
+        field.firstHorizontal(2, 1) should be("┌─┐" + field.eol)
+        field.firstHorizontal(3, 1) should be("┌───┐" + field.eol)
+        field.firstHorizontal(4, 1) should be("┌───┐" + field.eol)
+
+        field.firstHorizontal(1, 2) should be("┌─┬─┐" + field.eol)
+        field.firstHorizontal(1, 3) should be("┌─┬─┬─┐" + field.eol)
+
+        field.firstHorizontal(2, 2) should be("┌─┬─┐" + field.eol)
+        field.firstHorizontal(3, 3) should be("┌───┬───┬───┐" + field.eol)
+      }
     }
-    "have a scalable horizontal" in {
-      val field = new Field()
-      field.horizontal(1, 1) should be("├─┤" + field.eol)
-      field.horizontal(2, 1) should be("├──┤" + field.eol)
-      field.horizontal(1, 3) should be("├─┼─┼─┤" + field.eol)
+    "have a scalable horizontal" when {
+      "cell width or number of cells differ" in {
+        val field = new Field()
+        field.horizontal(1, 1) should be("├─┤" + field.eol)
+        field.horizontal(2, 1) should be("├─┤" + field.eol)
+        field.horizontal(3, 1) should be("├───┤" + field.eol)
+        field.horizontal(4, 1) should be("├───┤" + field.eol)
+
+        field.horizontal(1, 2) should be("├─┼─┤" + field.eol)
+        field.horizontal(1, 3) should be("├─┼─┼─┤" + field.eol)
+
+        field.horizontal(2, 2) should be("├─┼─┤" + field.eol)
+        field.horizontal(3, 3) should be("├───┼───┼───┤" + field.eol)
+      }
     }
     "have a scalable lastHorizontal" in {
       val field = new Field()
       field.lastHorizontal(1, 1) should be("└─┘" + field.eol)
-      field.lastHorizontal(2, 1) should be("└──┘" + field.eol)
+      field.lastHorizontal(2, 1) should be("└─┘" + field.eol)
       field.lastHorizontal(1, 3) should be("└─┴─┴─┘" + field.eol)
     }
   }
