@@ -9,33 +9,41 @@ case class Field(matrix: Matrix[Stone]):
   val rows: Int = matrix.rowNum
   val eol: String = sys.props("line.separator")
 
-  def firstHorizontal(cellWidth: Int = 3, row: Int = 3): String =
+  def firstHorizontal(cellWidth: Int = 3, row: Int = rows): String =
     if (cellWidth % 2 == 0) {
       "┌" + (("─" * (cellWidth - 1)) + "┬") * (row - 1) + ("─" * (cellWidth - 1)) + "┐" + eol
     } else {
       "┌" + (("─" * cellWidth) + "┬") * (row - 1) + ("─" * cellWidth) + "┐" + eol
     }
 
-  def horizontal(cellWidth: Int = 3, row: Int = 3): String =
+  def horizontal(cellWidth: Int = 3, row: Int = rows): String =
     if (cellWidth % 2 == 0) {
       "├" + (("─" * (cellWidth - 1)) + "┼") * (row - 1) + ("─" * (cellWidth - 1)) + "┤" + eol
     } else {
       "├" + (("─" * cellWidth) + "┼") * (row - 1) + ("─" * cellWidth) + "┤" + eol
     }
 
-  def lastHorizontal(cellWidth: Int = 3, row: Int = 3): String =
+  def lastHorizontal(cellWidth: Int = 3, row: Int = rows): String =
     if (cellWidth % 2 == 0) {
       "└" + (("─" * (cellWidth - 1)) + "┴") * (row - 1) + ("─" * (cellWidth - 1)) + "┘" + eol
     } else {
       "└" + (("─" * cellWidth) + "┴") * (row - 1) + ("─" * cellWidth) + "┘" + eol
     }
 
-  def vertical(row: Int = 3, cellWidth: Int = 3): String =
-    matrix
-      .row(row)
-      .map(_.toString)
-      .map(" " * ((cellWidth - 1) / 2) + _ + " " * ((cellWidth - 1) / 2))
-      .mkString("│", "│", "│") + eol
+  def vertical(row: Int = rows, cellWidth: Int = 3): String =
+    if (row == 1) {
+      matrix
+        .row(row - 1)
+        .map(_.toString)
+        .map(" " * ((cellWidth - 1) / 2) + _ + " " * ((cellWidth - 1) / 2))
+        .mkString("│", "│", "│") + eol
+    } else {
+      matrix
+        .row(row)
+        .map(_.toString)
+        .map(" " * ((cellWidth - 1) / 2) + _ + " " * ((cellWidth - 1) / 2))
+        .mkString("│", "│", "│") + eol
+    }
 
   def matchfield(cellWidth: Int = 3): String =
     (0 until rows)
