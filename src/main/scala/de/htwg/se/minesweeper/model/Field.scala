@@ -2,9 +2,9 @@ package de.htwg.se.minesweeper.model
 
 import scala.language.postfixOps
 
-case class Field(matrix: Matrix[Stone]):
-  def this(rows: Int = 3, cols: Int = 3, filling: Stone = Stone.NotTracked) =
-    this(new Matrix[Stone](rows, cols, filling))
+case class Field(matrix: Matrix[String]):
+  def this(rows: Int = 3, cols: Int = 3, filling: String = " ") =
+    this(new Matrix[String](rows, cols, filling))
 
   val cols: Int = matrix.colNum
   val rows: Int = matrix.rowNum
@@ -31,7 +31,7 @@ case class Field(matrix: Matrix[Stone]):
       "└" + (("─" * cellWidth) + "┴") * (row - 1) + ("─" * cellWidth) + "┘" + eol
     }
 
-  def vertical(row: Int = 3, cellWidth: Int = 3): String =
+  def vertical(row: Int = 1, cellWidth: Int = 3): String =
     matrix
       .row(row)
       .map(_.toString)
@@ -48,6 +48,3 @@ case class Field(matrix: Matrix[Stone]):
       )
 
   override def toString: String = matchfield()
-  def put(stone: Stone, x: Int, y: Int): Field = copy(
-    matrix.replaceCell(x, y, stone)
-  )
