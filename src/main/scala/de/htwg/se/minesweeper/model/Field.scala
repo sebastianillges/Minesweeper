@@ -1,5 +1,7 @@
 package de.htwg.se.minesweeper.model
 
+import scala.language.postfixOps
+
 case class Field(matrix: Matrix[Stone]):
   def this(rows: Int = 3, cols: Int = 3, filling: Stone = Stone.Flag) = this(new Matrix[Stone](rows, cols, filling))
 
@@ -8,13 +10,25 @@ case class Field(matrix: Matrix[Stone]):
   val eol: String = sys.props("line.separator")
 
   def firstHorizontal(cellWidth: Int = 3, row: Int = 3): String =
-    "┌" + (("─" * cellWidth) + "┬") * (row - 1) + ("─" * cellWidth) + "┐" + eol
+    if (cellWidth % 2 == 0) {
+      "┌" + (("─" * (cellWidth - 1)) + "┬") * (row - 1) + ("─" * (cellWidth - 1)) + "┐" + eol
+    } else {
+      "┌" + (("─" * cellWidth) + "┬") * (row - 1) + ("─" * cellWidth) + "┐" + eol
+    }
 
   def horizontal(cellWidth: Int = 3, row: Int = 3): String =
-    "├" + (("─" * cellWidth) + "┼") * (row - 1) + ("─" * cellWidth) + "┤" + eol
+    if (cellWidth % 2 == 0) {
+      "├" + (("─" * (cellWidth - 1)) + "┼") * (row - 1) + ("─" * (cellWidth - 1)) + "┤" + eol
+    } else {
+      "├" + (("─" * cellWidth) + "┼") * (row - 1) + ("─" * cellWidth) + "┤" + eol
+    }
 
   def lastHorizontal(cellWidth: Int = 3, row: Int = 3): String =
-    "└" + (("─" * cellWidth) + "┴") * (row - 1) + ("─" * cellWidth) + "┘" + eol
+    if (cellWidth % 2 == 0) {
+      "└" + (("─" * (cellWidth - 1)) + "┴") * (row - 1) + ("─" * (cellWidth - 1)) + "┘" + eol
+    } else {
+      "└" + (("─" * cellWidth) + "┴") * (row - 1) + ("─" * cellWidth) + "┘" + eol
+    }
 
   def vertical(row: Int = 3, cellWidth: Int = 3): String =
     matrix
