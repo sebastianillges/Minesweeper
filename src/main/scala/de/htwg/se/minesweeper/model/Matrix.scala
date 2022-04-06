@@ -7,6 +7,6 @@ case class Matrix[T: ClassTag](rows: Array[Array[T]]):
   val rowNum: Int = rows.length
   val colNum: Int = rows(rowNum - 1).length
   def cell(row: Int, col: Int): T = rows(row)(col)
-  def row(row: Int): Array[T] = rows(row)
+  def row(rowIndex: Int): Array[T] = rows(rowIndex)
   def fill(filling: T): Matrix[T] = copy(Array.tabulate(rowNum, colNum) { (row, col) => filling })
   def replaceCell(row: Int, col: Int, cell: T): Matrix[T] = copy(rows.updated(row, rows(row).updated(col, cell)))
