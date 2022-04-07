@@ -64,8 +64,16 @@ class FieldSpec extends AnyWordSpec {
     "have scalable cells" in {
       val field = new Field()
       field.cells() should be("│   │   │   │" + field.eol)
-      field.cells(3, 3) should be("│   │   │   │" + field.eol)
+
       field.cells(1, 1) should be("│ │" + field.eol)
+      field.cells(1, 2) should be("│ │ │" + field.eol)
+      field.cells(1, 3) should be("│ │ │ │" + field.eol)
+
+      field.cells(2, 1) should be("│  │" + field.eol)
+      field.cells(3, 1) should be("│   │" + field.eol)
+
+      field.cells(2, 2) should be("│  │  │" + field.eol)
+      field.cells(3, 3) should be("│   │   │   │" + field.eol)
     }
   }
 }
