@@ -21,8 +21,8 @@ case class Field(height: Int = 3, width: Int = 3, cellWidth: Int = 3):
       "└" + (("─" * (cellWidth - 1)) + "┴") * (cellNum - 1) + ("─" * (cellWidth - 1)) + "┘" + eol
     else
       "└" + (("─" * cellWidth) + "┴") * (cellNum - 1) + ("─" * cellWidth) + "┘" + eol
-  def cells(cellHeight: Int = 3, cellNum: Int = 3) =
-    ("│" + (" " * cellHeight)) * cellNum + "│" + eol
+  def cells(cellWidth: Int = 3, cellNum: Int = 3) =
+    ("│" + (" " * cellWidth)) * cellNum + "│" + eol
   def matchfield(height: Int, width: Int, cellWidth: Int) =
     firstBar(cellWidth, width)
       + cells(cellWidth, width)
