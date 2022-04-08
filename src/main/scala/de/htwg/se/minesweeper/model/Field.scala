@@ -1,7 +1,5 @@
 package de.htwg.se.minesweeper.model
 
-import scala.language.postfixOps
-
 case class Field(height: Int = 3, width: Int = 3, cellWidth: Int = 3):
   def eol = sys.props("line.separator")
 
