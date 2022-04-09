@@ -1,7 +1,5 @@
 package de.htwg.se.minesweeper.model
 
-import scala.reflect.ClassTag
-
 case class Matrix[S, T](rows: Vector[Vector[(S, T)]]):
   def this(sizeRow: Int, sizeCol: Int, filling: (S, T)) =
     this(Vector.tabulate[(S, T)](sizeRow, sizeCol)((row, col) => filling))

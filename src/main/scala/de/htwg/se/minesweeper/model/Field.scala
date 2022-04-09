@@ -1,8 +1,10 @@
 package de.htwg.se.minesweeper.model
 
-case class Field(matrix: Matrix[Stone]):
-  def this(rows: Int = 3, cols: Int = 3, filling: Stone = Stone.NotTracked) =
-    this(new Matrix[Stone](rows, cols, filling))
+import scala.util.Random as r
+
+case class Field(matrix: Matrix[Stone, Stone]):
+  def this(rows: Int = 3, cols: Int = 3, filling: (Stone, Stone)) =
+    this(new Matrix[Stone, Stone](rows, cols, filling))
 
   val cols: Int = matrix.colNum
   val rows: Int = matrix.rowNum
@@ -32,7 +34,7 @@ case class Field(matrix: Matrix[Stone]):
   def cells(row: Int, cellWidth: Int = 3): String =
     matrix
       .row(row)
-      .map(_.toString)
+      .map(_._1)
       .map(" " * ((cellWidth - 1) / 2) + _ + " " * ((cellWidth - 1) / 2))
       .mkString("│", "│", "│") + eol
 
@@ -42,4 +44,22 @@ case class Field(matrix: Matrix[Stone]):
       .mkString(firstBar(cellWidth, cols), bar(cellWidth, cols), lastBar(cellWidth, cols))
 
   override def toString: String = matchfield()
-  def put(stone: Stone, x: Int, y: Int): Field = copy(matrix.replaceCell(x, y, stone))
+
+  def put(stone: Stone, x: Int, y: Int): Field = copy(matrix.replaceCell(x, y, (this.matrix.row(x)(y)._1, stone)))
+
+  def setBombs(bombNumber: Int = 3): Field =
+    setBombsR(bombNumber, this)
+
+  def setBombsR(bombNumber: Int, field: Field, count: Int = 0): Field =
+    var row = r.nextInt(rows)
+    val col = r.nextInt(cols)
+    if (field.matrix.row(row)(col)._2.equals(Stone.Bomb) && count < bombNumber) then setBombsR(bombNumber, field, count)
+    else if (count == bombNumber) then field
+    else
+      val resField = field.put(Stone.Bomb, row, col)
+      val countR = count + 1
+      setBombsR(bombNumber, resField, countR)
+
+  def revealValue(x: Int, y: Int): Field =
+    if (!this.matrix.row(x)(y)._1.equals(Stone.NotTracked)) then this
+    else copy(this.matrix.replaceCell(x, y, (this.matrix.row(x)(y)._2, this.matrix.row(x)(y)._1)))
