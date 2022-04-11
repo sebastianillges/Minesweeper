@@ -6,10 +6,10 @@ import org.scalatest.wordspec.AnyWordSpec
 class FieldSpec extends AnyWordSpec {
   "A Minesweeper Field" when {
     "created with default Stone" should {
-      val field1 = new Field(1, 1)
-      val field2 = new Field(1, 2)
-      val field3 = new Field(2, 3)
-      val field = new Field(3, 3)
+      val field1 = new Field(1, 1, (Stone.NotTracked, Stone.NotTracked))
+      val field2 = new Field(1, 2, (Stone.NotTracked, Stone.NotTracked))
+      val field3 = new Field(2, 3, (Stone.NotTracked, Stone.NotTracked))
+      val field = new Field(3, 3, (Stone.NotTracked, Stone.NotTracked))
       val eol = field1.eol
       "have a firstBar of form '┌───┬───┬───┐'" in {
         field.firstBar() should be("┌───┬───┬───┐" + eol)
@@ -70,10 +70,10 @@ class FieldSpec extends AnyWordSpec {
         }
     }
     "filled with ✴" should {
-      val field1 = new Field(1, 1, Stone.Bomb)
-      val field2 = new Field(1, 2, Stone.Bomb)
-      val field3 = new Field(2, 3, Stone.Bomb)
-      val field = new Field(3, 3, Stone.Bomb)
+      val field1 = new Field(1, 1, (Stone.Bomb, Stone.Bomb))
+      val field2 = new Field(1, 2, (Stone.Bomb, Stone.Bomb))
+      val field3 = new Field(2, 3, (Stone.Bomb, Stone.Bomb))
+      val field = new Field(3, 3, (Stone.Bomb, Stone.Bomb))
       val eol = field1.eol
       "have a firstBar of form '┌───┬───┬───┐'" in {
         field.firstBar() should be("┌───┬───┬───┐" + eol)
@@ -134,10 +134,10 @@ class FieldSpec extends AnyWordSpec {
         }
     }
     "filled with \u2691" should {
-      val field1 = new Field(1, 1, Stone.Flag)
-      val field2 = new Field(1, 2, Stone.Flag)
-      val field3 = new Field(2, 3, Stone.Flag)
-      val field = new Field(3, 3, Stone.Flag)
+      val field1 = new Field(1, 1, (Stone.Flag, Stone.Flag))
+      val field2 = new Field(1, 2, (Stone.Flag, Stone.Flag))
+      val field3 = new Field(2, 3, (Stone.Flag, Stone.Flag))
+      val field = new Field(3, 3, (Stone.Flag, Stone.Flag))
       val eol = field1.eol
       "have a firstBar of form '┌───┬───┬───┐'" in {
         field.firstBar() should be("┌───┬───┬───┐" + eol)
@@ -198,12 +198,15 @@ class FieldSpec extends AnyWordSpec {
         }
     }
     "put function used" should {
-      val field = new Field(2, 2, Stone.NotTracked)
+      val field = new Field(2, 2, (Stone.NotTracked, Stone.NotTracked))
       val eol = field.eol
       "have a different Playstone placed on the Field" in {
         field.put(Stone.Flag, 0, 0).toString should be(
-          "┌───┬───┐" + eol + "│ ⚑ │ ■ │" + eol + "├───┼───┤" +
-            eol + "│ ■ │ ■ │" + eol + "└───┴───┘" + eol
+          "┌───┬───┐" + eol +
+            "│ ■ │ ■ │" + eol +
+            "├───┼───┤" + eol +
+            "│ ■ │ ■ │" + eol +
+            "└───┴───┘" + eol
         )
       }
     }
