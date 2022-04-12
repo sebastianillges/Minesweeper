@@ -200,14 +200,9 @@ class FieldSpec extends AnyWordSpec {
     "put function used" should {
       val field = new Field(2, 2, (Stone.NotTracked, Stone.NotTracked))
       val eol = field.eol
-      "have a different Playstone placed on the Field" in {
-        field.put(Stone.Flag, 0, 0).toString should be(
-          "┌───┬───┐" + eol +
-            "│ ■ │ ■ │" + eol +
-            "├───┼───┤" + eol +
-            "│ ■ │ ■ │" + eol +
-            "└───┴───┘" + eol
-        )
+      val field2 = field.put(Stone.Flag, 0, 0)
+      "have the second element of the tuple changed" in {
+        field2.matrix.row(0)(0)._2.toString should be("\u2691")
       }
     }
   }
