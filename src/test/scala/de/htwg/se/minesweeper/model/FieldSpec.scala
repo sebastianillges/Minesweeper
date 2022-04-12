@@ -6,10 +6,10 @@ import org.scalatest.wordspec.AnyWordSpec
 class FieldSpec extends AnyWordSpec {
   "A Minesweeper Field" when {
     "created with default Stone" should {
-      val field1 = new Field(1, 1, (Stone.NotTracked, Stone.NotTracked))
-      val field2 = new Field(1, 2, (Stone.NotTracked, Stone.NotTracked))
-      val field3 = new Field(2, 3, (Stone.NotTracked, Stone.NotTracked))
-      val field = new Field(3, 3, (Stone.NotTracked, Stone.NotTracked))
+      val field1 = new Field(1, 1)
+      val field2 = new Field(1, 2)
+      val field3 = new Field(2, 3)
+      val field = new Field(3, 3)
       val eol = field1.eol
       "have a firstBar of form '┌───┬───┬───┐'" in {
         field.firstBar() should be("┌───┬───┬───┐" + eol)
@@ -68,6 +68,17 @@ class FieldSpec extends AnyWordSpec {
               eol + "│ \u25A0 │ \u25A0 │ \u25A0 │" + eol + "└───┴───┴───┘" + eol
           )
         }
+      "have a matchfield with default value in the form of" in {
+        field.matchfield() should be(
+          "┌───┬───┬───┐" + eol +
+            "│ ■ │ ■ │ ■ │" + eol +
+            "├───┼───┼───┤" + eol +
+            "│ ■ │ ■ │ ■ │" + eol +
+            "├───┼───┼───┤" + eol +
+            "│ ■ │ ■ │ ■ │" + eol +
+            "└───┴───┴───┘" + eol
+        )
+      }
     }
     "filled with ✴" should {
       val field1 = new Field(1, 1, (Stone.Bomb, Stone.Bomb))
