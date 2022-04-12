@@ -47,18 +47,8 @@ case class Field(matrix: Matrix[Stone, Stone]):
 
   def put(stone: Stone, x: Int, y: Int): Field = copy(matrix.replaceCell(x, y, (this.matrix.row(x)(y)._1, stone)))
 
-  def setBombs(bombNumber: Int = 3): Field =
-    setBombsR(bombNumber, this)
-
-  def setBombsR(bombNumber: Int, field: Field, count: Int = 0): Field =
-    var row = r.nextInt(rows)
-    val col = r.nextInt(cols)
-    if (field.matrix.row(row)(col)._2.equals(Stone.Bomb) && count < bombNumber) then setBombsR(bombNumber, field, count)
-    else if (count == bombNumber) then field
-    else
-      val resField = field.put(Stone.Bomb, row, col)
-      val countR = count + 1
-      setBombsR(bombNumber, resField, countR)
+  def setBombs(x: Int, y: Int): Field =
+    put(Stone.Bomb, x, y)
 
   def revealValue(x: Int, y: Int): Field =
     if (!this.matrix.row(x)(y)._1.equals(Stone.NotTracked)) then this

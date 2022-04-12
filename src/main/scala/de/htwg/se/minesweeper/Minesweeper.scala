@@ -6,7 +6,7 @@ import scala.io.StdIn.readLine
 
   val test = new Matrix[Stone, Stone](3, 3, (Stone.NotTracked, Stone.One))
   var field = Field(test)
-  field = field.setBombs(4)
+  field = field.setBombs(0, 0)
   getInputAndPrintLoop(field)
 
 def getInputAndPrintLoop(field: Field): Unit =

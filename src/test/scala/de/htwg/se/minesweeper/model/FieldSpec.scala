@@ -205,5 +205,19 @@ class FieldSpec extends AnyWordSpec {
         field2.matrix.row(0)(0)._2.toString should be("\u2691")
       }
     }
+    "revealValue function used" should {
+      val field = new Field(2, 2, (Stone.NotTracked, Stone.EmptyTracked))
+      val field2 = field.revealValue(1, 0)
+      "swap the order of the Tuple elements" in {
+        field2.matrix.row(1)(0)._1.toString should be("\u25A1")
+      }
+    }
+    "setBombsR function used" should {
+      val field = new Field(2, 2, (Stone.NotTracked, Stone.EmptyTracked))
+      val field2 = field.setBombs(1, 0)
+      "set a bomb at (1,0)" in {
+        field2.matrix.row(1)(0)._2.toString should be("✴")
+      }
+    }
   }
 }
