@@ -211,6 +211,12 @@ class FieldSpec extends AnyWordSpec {
       "swap the order of the Tuple elements" in {
         field2.matrix.row(1)(0)._1.toString should be("\u25A1")
       }
+
+      val field3 = new Field(2, 2, (Stone.EmptyTracked, Stone.EmptyTracked))
+      val field4 = field3.revealValue(1, 0)
+      "not swap the order of the Tuple elements" in {
+        field4.matrix.row(1)(0)._1.toString should be("\u25A1")
+      }
     }
     "setBombsR function used" should {
       val field = new Field(2, 2, (Stone.NotTracked, Stone.EmptyTracked))
