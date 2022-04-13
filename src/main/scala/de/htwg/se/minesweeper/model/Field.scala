@@ -53,8 +53,8 @@ case class Field(matrix: Matrix[Stone, Stone]):
   def setBombsR(bombNumber: Int, field: Field, count: Int = 0): Field =
     var row = r.nextInt(rows)
     val col = r.nextInt(cols)
-    if (field.matrix.row(row)(col)._2.equals(Stone.Bomb) && count < bombNumber) then setBombsR(bombNumber, field, count)
-    else if (count == bombNumber) then field
+    if (count == bombNumber) then field
+    else if (field.matrix.row(row)(col)._2.equals(Stone.Bomb)) then setBombsR(bombNumber, field, count)
     else
       val resField = field.put(Stone.Bomb, row, col)
       val countR = count + 1
