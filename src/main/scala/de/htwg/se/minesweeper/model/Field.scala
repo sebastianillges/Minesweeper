@@ -3,7 +3,7 @@ package de.htwg.se.minesweeper.model
 import scala.util.Random as r
 
 case class Field(matrix: Matrix[Stone, Stone]):
-  def this(rows: Int = 3, cols: Int = 3, filling: (Stone, Stone)) =
+  def this(rows: Int = 3, cols: Int = 3, filling: (Stone, Stone) = (Stone.NotTracked, Stone.EmptyTracked)) =
     this(new Matrix[Stone, Stone](rows, cols, filling))
 
   val cols: Int = matrix.colNum
