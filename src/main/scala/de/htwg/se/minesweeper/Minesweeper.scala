@@ -3,8 +3,6 @@ import de.htwg.se.minesweeper.model.*
 @main def main(): Unit =
   println("Minesweeper matchfield: \n")
 
-  val field = new Field(3, 3, Stone.Flag)
+  val field = new Field()
 
-  println(field.horizontal())
-  println()
-  println(field.lastHorizontal())
+  println(field.cells(1, 1))
