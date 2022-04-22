@@ -229,12 +229,20 @@ class FieldSpec extends AnyWordSpec {
         field4.matrix.row(1)(0)._1.toString should be("\u25A1")
       }
     }
-    "setBombsR function used" should {
+    "setBombs function used" should {
       val field = new Field(2, 2, (Stone.NotTracked, Stone.EmptyTracked))
       val field2 = field.setBombs(1, 0)
       "set a bomb at (1,0)" in {
         field2.matrix.row(1)(0)._2.toString should be("✴")
       }
+    }
+    "have a toString function" in {
+      val field = new Field(3, 3, (Stone.NotTracked, Stone.EmptyTracked))
+      val eol = field.eol
+      field.toString should be(
+        "┌───┬───┬───┐" + eol + "│ ■ │ ■ │ ■ │" + eol + "├───┼───┼───┤" + eol + "│ ■ │ ■ │ ■ │" +
+          eol + "├───┼───┼───┤" + eol + "│ ■ │ ■ │ ■ │" + eol + "└───┴───┴───┘" + eol
+      )
     }
   }
 }
