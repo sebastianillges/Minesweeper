@@ -1,20 +1,27 @@
-import controller.Controller
+package de.htwg.se.minesweeper.aview
+
+import de.htwg.se.minesweeper.controller.Controller
+
 import scala.io.StdIn.readLine
-import util.Observer
+import de.htwg.se.minesweeper.util.Observer
+import de.htwg.se.minesweeper.model.Field
 
 class TUI(controller: Controller) extends Observer:
   controller.add(this)
   def run =
-    println(controller.toString)
+    controller.field = controller.setBombs(9)
+    println(controller.field.toString)
     getInputAndPrintLoop()
 
-  def getInputAndPrintLoop(field: Field): Unit =
-  val input = readLine
-  parseInput(input) match
-    case None => field
-    case Some(newfield) =>
-      println(newfield)
-      getInputAndPrintLoop(newfield)
+  override def update: Unit = println(controller.field.toString)
+
+  def getInputAndPrintLoop(): Unit =
+    val input = readLine
+    parseInput(input) match
+      case None =>
+      case Some(newfield) =>
+        println(controller.field.toString)
+        getInputAndPrintLoop()
 
   def parseInput(input: String): Option[Field] =
     input match
@@ -23,5 +30,6 @@ class TUI(controller: Controller) extends Observer:
         val chars = input.toCharArray
         val x = chars(0).toString.toInt
         val y = chars(1).toString.toInt
-        Some(controller.revealValue(x, y))
+        controller.field = controller.field.revealValue(x, y)
+        Some(controller.field)
       }

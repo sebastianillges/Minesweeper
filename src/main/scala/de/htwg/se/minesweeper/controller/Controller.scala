@@ -1,7 +1,8 @@
-import model.Field
-import model.Stone
-import util.Observable
-import java.util.Observable
+package de.htwg.se.minesweeper.controller
+
+import de.htwg.se.minesweeper.model.Field
+import de.htwg.se.minesweeper.model.Stone
+import de.htwg.se.minesweeper.util.Observable
 
 case class Controller(var field: Field) extends Observable:
 
