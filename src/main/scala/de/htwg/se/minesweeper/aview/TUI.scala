@@ -9,9 +9,7 @@ import de.htwg.se.minesweeper.model.Field
 class TUI(controller: Controller) extends Observer:
   controller.add(this)
   def run =
-    if (controller.field.matrix.colNum == 8) then controller.field = controller.setBombs(10)
-    else if (controller.field.matrix.colNum == 16) then controller.field = controller.setBombs(40)
-    else if (controller.field.matrix.colNum == 16) then controller.field = controller.setBombs(99)
+    controller.createFieldWithBombs
     println(controller.field.toString)
     getInputAndPrintLoop()
 

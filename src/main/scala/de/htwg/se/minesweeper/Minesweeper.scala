@@ -13,7 +13,7 @@ import scala.io.StdIn.readLine
   input match
     case "1" => field = Some(Field(matrix = new Matrix[Stone, Stone](8, 8, (Stone.NotTracked, Stone.EmptyTracked))))
     case "2" => field = Some(Field(matrix = new Matrix[Stone, Stone](16, 16, (Stone.NotTracked, Stone.EmptyTracked))))
-    case "3" => field = Some(Field(matrix = new Matrix[Stone, Stone](30, 16, (Stone.NotTracked, Stone.EmptyTracked))))
+    case "3" => field = Some(Field(matrix = new Matrix[Stone, Stone](32, 16, (Stone.NotTracked, Stone.EmptyTracked))))
 
   val controller = Controller(field.get)
   val tui = TUI(controller)

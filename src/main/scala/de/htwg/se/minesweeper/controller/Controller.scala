@@ -12,6 +12,11 @@ case class Controller(var field: Field) extends Observable:
 
   def revealValue(x: Int, y: Int) = field.revealValue(x, y)
 
+  def createFieldWithBombs =
+    if (field.matrix.rowNum == 8) then field = setBombs(10)
+    else if (field.matrix.rowNum == 16) then field = setBombs(40)
+    else if (field.matrix.rowNum == 32) then field = setBombs(99)
+
   notifyObservers
 
   override def toString = field.toString
