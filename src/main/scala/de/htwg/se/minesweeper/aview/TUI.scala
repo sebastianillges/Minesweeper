@@ -9,7 +9,9 @@ import de.htwg.se.minesweeper.model.Field
 class TUI(controller: Controller) extends Observer:
   controller.add(this)
   def run =
-    controller.field = controller.setBombs(9)
+    if (controller.field.matrix.colNum == 8) then controller.field = controller.setBombs(10)
+    else if (controller.field.matrix.colNum == 16) then controller.field = controller.setBombs(40)
+    else if (controller.field.matrix.colNum == 16) then controller.field = controller.setBombs(99)
     println(controller.field.toString)
     getInputAndPrintLoop()
 
@@ -20,7 +22,7 @@ class TUI(controller: Controller) extends Observer:
     parseInput(input) match
       case None =>
       case Some(newfield) =>
-        println(controller.field.toString)
+        println(controller.toString)
         getInputAndPrintLoop()
 
   def parseInput(input: String): Option[Field] =
@@ -30,6 +32,6 @@ class TUI(controller: Controller) extends Observer:
         val chars = input.toCharArray
         val x = chars(0).toString.toInt
         val y = chars(1).toString.toInt
-        controller.field = controller.field.revealValue(x, y)
+        controller.field = controller.revealValue(x, y)
         Some(controller.field)
       }
