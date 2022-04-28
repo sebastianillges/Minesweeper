@@ -9,7 +9,7 @@ import de.htwg.se.minesweeper.model.Field
 class TUI(controller: Controller) extends Observer:
   controller.add(this)
   def run =
-    controller.createFieldWithBombs
+    controller.createFieldWithBombs(controller.field.matrix.rowNum)
     println(controller.field.toString)
     getInputAndPrintLoop()
 
