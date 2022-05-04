@@ -19,6 +19,7 @@ project/metals.sbt
 project/project/
 project/target/
 target/
+src/test/scala/de/htwg/se/minesweeper/model/project
 
 # coursier
 null/
