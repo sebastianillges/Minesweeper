@@ -10,3 +10,11 @@ lazy val root = project
     libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.11",
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.11" % "test"
   )
+
+jacocoReportSettings := JacocoReportSettings(
+  "Jacoco Coverage Report",
+  None,
+  JacocoThresholds(),
+  Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
+  "utf-8"
+)
