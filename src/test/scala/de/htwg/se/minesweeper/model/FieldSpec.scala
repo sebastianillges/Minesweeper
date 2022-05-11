@@ -121,6 +121,26 @@ class FieldSpec extends AnyWordSpec {
           count should be(3)
         }
       }
+      "getCell function used" should {
+        val field = new Field(2, 2)
+        "get the values of the Field" in {
+          field.getCell(0, 0) should be(field.matrix.cell(0, 0)._1, field.matrix.cell(0, 0)._2)
+        }
+      }
+      "setFlag function used" should {
+        var field = new Field(2, 2)
+        "set a Flag if the fields first value is not tracked" in {
+          field.setFlag(0, 0).getCell(0, 0)._1 should be(Stone.Flag)
+        }
+        "remove the Flag if the fields first value is a Flag" in {
+          field = field.setFlag(0, 0)
+          field.setFlag(0, 0).getCell(0, 0)._1 should be(Stone.NotTracked)
+        }
+        "dont do anything if the fields value is already revealed" in {
+          field = field.revealValue(0, 0)
+          field.setFlag(0, 0).getCell(0, 0)._1 should not be (Stone.Flag)
+        }
+      }
     }
   }
 }

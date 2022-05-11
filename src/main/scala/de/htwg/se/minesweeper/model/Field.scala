@@ -47,6 +47,8 @@ case class Field(matrix: Matrix[Stone, Stone]):
 
   def put(stone: Stone, x: Int, y: Int): Field = copy(matrix.replaceCell(x, y, (this.matrix.row(x)(y)._1, stone)))
 
+  def getCell(x: Int, y: Int): (Stone, Stone) = matrix.cell(x, y)
+
   def setBombs(bombNumber: Int = 3): Field =
     setBombsR(bombNumber, this)
 
@@ -63,3 +65,14 @@ case class Field(matrix: Matrix[Stone, Stone]):
   def revealValue(x: Int, y: Int): Field =
     if (!this.matrix.row(x)(y)._1.equals(Stone.NotTracked)) then this
     else copy(this.matrix.replaceCell(x, y, (this.matrix.row(x)(y)._2, this.matrix.row(x)(y)._1)))
+
+  def setFlag(x: Int, y: Int): Field =
+    var resultField = copy(matrix.replaceCell(x, y, (this.matrix.row(x)(y)._1, this.matrix.row(x)(y)._2)))
+
+    if (matrix.cell(x, y)._1 == Stone.Flag) then
+      resultField = copy(matrix.replaceCell(x, y, (Stone.NotTracked, this.matrix.row(x)(y)._2)))
+      resultField
+    else if (matrix.cell(x, y)._1 == Stone.NotTracked) then
+      resultField = copy(matrix.replaceCell(x, y, (Stone.Flag, this.matrix.row(x)(y)._2)))
+      resultField
+    else resultField
