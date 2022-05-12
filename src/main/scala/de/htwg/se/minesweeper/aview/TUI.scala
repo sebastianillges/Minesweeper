@@ -17,7 +17,6 @@ class TUI(controller: Controller) extends Observer:
 
   def getInputAndPrintLoop(): Unit =
     val input = readLine
-    if (input.toString == "q") then System.exit(0)
     input.size match
       case 2 =>
         parseInput(input) match
@@ -28,15 +27,14 @@ class TUI(controller: Controller) extends Observer:
           case None       => System.exit(0)
           case Some(move) => controller.doAndPublish(controller.setFlag, move)
       case _ =>
-        println("Ungültige eingabe")
+        input match
+          case "q" => System.exit(0)
+          case _   => println("Ungültige eingabe")
+
     getInputAndPrintLoop()
 
   def parseInput(input: String): Option[Coordinates] =
-    input match
-      case "q" => None
-      case _ => {
-        val chars = input.toCharArray
-        val x = chars(0).toString.toInt
-        val y = chars(1).toString.toInt
-        Some(new Coordinates(x, y))
-      }
+    val chars = input.toCharArray
+    val x = chars(0).toString.toInt
+    val y = chars(1).toString.toInt
+    Some(new Coordinates(x, y))

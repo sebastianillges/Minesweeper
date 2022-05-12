@@ -1,5 +1,6 @@
 package de.htwg.se.minesweeper.model
 
+import scala.collection.mutable
 import scala.util.Random as r
 
 case class Field(matrix: Matrix[Stone, Stone]):
@@ -68,11 +69,33 @@ case class Field(matrix: Matrix[Stone, Stone]):
 
   def setFlag(x: Int, y: Int): Field =
     var resultField = copy(matrix.replaceCell(x, y, (this.matrix.row(x)(y)._1, this.matrix.row(x)(y)._2)))
-
-    if (matrix.cell(x, y)._1 == Stone.Flag) then
-      resultField = copy(matrix.replaceCell(x, y, (Stone.NotTracked, this.matrix.row(x)(y)._2)))
-      resultField
-    else if (matrix.cell(x, y)._1 == Stone.NotTracked) then
-      resultField = copy(matrix.replaceCell(x, y, (Stone.Flag, this.matrix.row(x)(y)._2)))
-      resultField
+    if (detectBombs(this).size == detectFlags(this).size) then
+      if (getCell(x, y)._1 == Stone.Flag) then copyAndReplaceFieldCell(this, x, y, Stone.NotTracked, true)
+      else resultField
+    else if (matrix.cell(x, y)._1 == Stone.Flag) then copyAndReplaceFieldCell(this, x, y, Stone.NotTracked, true)
+    else if (matrix.cell(x, y)._1 == Stone.NotTracked) then copyAndReplaceFieldCell(this, x, y, Stone.Flag, true)
     else resultField
+
+  def detectBombs(field: Field): Map[Coordinates, Boolean] =
+    var bombMap: Map[Coordinates, Boolean] = Map.empty[Coordinates, Boolean]
+    for (i <- (0 until field.rows))
+      for (j <- (0 until field.cols))
+        if (field.matrix.rows(i)(j)._2 == Stone.Bomb) then bombMap = bombMap + (new Coordinates(i, j) -> true)
+    bombMap
+
+  def detectFlags(field: Field): Map[Coordinates, Boolean] =
+    var flagMap: Map[Coordinates, Boolean] = Map.empty[Coordinates, Boolean]
+    for (i <- (0 until field.rows))
+      for (j <- (0 until field.cols))
+        if (field.matrix.rows(i)(j)._1 == Stone.Flag) then flagMap = flagMap + (new Coordinates(i, j) -> true)
+    flagMap
+
+  def copyAndReplaceFieldCell(field: Field, x: Int, y: Int, stone: Stone, stonePosition: Boolean): Field =
+    var resultField: Option[Field] = None
+    if (stonePosition == true) then
+      resultField = Some(copy(field.matrix.replaceCell(x, y, (stone, field.matrix.row(x)(y)._2))))
+      resultField.get
+    else if (stonePosition == false) then
+      resultField = Some(copy(field.matrix.replaceCell(x, y, (field.matrix.row(x)(y)._1, stone))))
+      resultField.get
+    resultField.get
