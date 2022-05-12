@@ -96,6 +96,6 @@ case class Field(matrix: Matrix[Stone, Stone]):
       resultField = Some(copy(field.matrix.replaceCell(x, y, (stone, field.matrix.row(x)(y)._2))))
       resultField.get
     else if (stonePosition == false) then
-      resultField = Some(copy(field.matrix.replaceCell(x, y, (field.matrix.row(x)(y)._1, stone))))
+      resultField = Some(put(stone, x, y))
       resultField.get
     resultField.get
