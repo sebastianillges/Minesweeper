@@ -129,8 +129,12 @@ class FieldSpec extends AnyWordSpec {
       }
       "setFlag function used" should {
         var field = new Field(2, 2)
-        "set a Flag if the fields first value is not tracked" in {
+        field = field.setBombs(1)
+        "set a Flag if the fields first value is not tracked and if there are bombs in the field" in {
           field.setFlag(0, 0).getCell(0, 0)._1 should be(Stone.Flag)
+        }
+        "not set a Flag if there are as many flags as bombs in the field" in {
+          field.setFlag(0, 1).getCell(0, 0)._1 should not be (Stone.Flag)
         }
         "remove the Flag if the fields first value is a Flag" in {
           field = field.setFlag(0, 0)
@@ -139,6 +143,36 @@ class FieldSpec extends AnyWordSpec {
         "dont do anything if the fields value is already revealed" in {
           field = field.revealValue(0, 0)
           field.setFlag(0, 0).getCell(0, 0)._1 should not be (Stone.Flag)
+        }
+      }
+      "detectBombs function used" should {
+        var field = new Field(2, 2)
+        field = field.setBombs(2)
+        "determine the location of the bombs in the field" in {
+          field.detectBombs(field).size should be(2)
+        }
+      }
+      "detectFlags function used" should {
+        var field = new Field(2, 2)
+        field = field.setBombs(1)
+        field = field.setFlag(0, 0)
+        "determine the number of flags placed in the field" in {
+          field.detectFlags(field).size should be(1)
+        }
+        field = field.setFlag(0, 1)
+        "be less flags on the field as bombs" in {
+          field.detectFlags(field).size should be(1)
+        }
+      }
+      "copyAndReplaceFieldCell used" should {
+        var field = new Field(2, 2)
+        field = field.copyAndReplaceFieldCell(field, 0, 0, Stone.One, true)
+        "replace the first tuple value of the cell with the given stone in the paramateres" in {
+          field.matrix.rows(0)(0)._1 should be(Stone.One)
+        }
+        field = field.copyAndReplaceFieldCell(field, 0, 0, Stone.One, false)
+        "replace the second tuple value of the cell with the given stone in the paramateres" in {
+          field.matrix.rows(0)(0)._2 should be(Stone.One)
         }
       }
     }
