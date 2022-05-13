@@ -81,6 +81,7 @@ case class Field(matrix: Matrix[Stone, Stone]):
     for (i <- (0 until field.rows))
       for (j <- (0 until field.cols))
         if (field.matrix.rows(i)(j)._2 == Stone.Bomb) then bombMap = bombMap + (new Coordinates(i, j) -> true)
+        else bombMap = bombMap + (new Coordinates(i, j) -> false)
     bombMap
 
   def detectFlags(field: Field): Map[Coordinates, Boolean] =
