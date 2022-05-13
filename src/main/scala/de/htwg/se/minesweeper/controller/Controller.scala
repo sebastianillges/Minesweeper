@@ -16,11 +16,22 @@ case class Controller(var field: Field) extends Observable:
   def revealValue(move: Coordinates) =
     field.revealValue(move.x, move.y)
 
-  def createFieldWithBombs =
-    if (field.rows == 8) then field = field.setBombs(10)
-    else if (field.rows == 16) then field = field.setBombs(40)
-    else if (field.rows == 32) then field = field.setBombs(99)
-    notifyObservers
+  def createFieldWithBombs(): Field =
+    if (field.rows == 8) then
+      field = field.setBombs(10)
+      notifyObservers
+      field
+    else if (field.rows == 16) then
+      field = field.setBombs(40)
+      notifyObservers
+      field
+    else if (field.rows == 32) then
+      field = field.setBombs(99)
+      notifyObservers
+      field
+    else
+      notifyObservers
+      field
 
   def setFlag(coordinates: Coordinates) =
     field.setFlag(coordinates.x, coordinates.y)

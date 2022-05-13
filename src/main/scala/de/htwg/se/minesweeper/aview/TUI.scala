@@ -10,7 +10,7 @@ import scala.runtime.Nothing$
 class TUI(controller: Controller) extends Observer:
   controller.add(this)
   def run =
-    controller.createFieldWithBombs
+    controller.createFieldWithBombs()
     getInputAndPrintLoop()
 
   override def update: Unit = println(controller.toString)
