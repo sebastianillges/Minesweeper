@@ -1,4 +1,4 @@
-package de.htwg.se.minesweeper
+package de.htwg.se.minesweeper.util
 
 import de.htwg.se.minesweeper.model.{Field, Matrix, Stone}
 

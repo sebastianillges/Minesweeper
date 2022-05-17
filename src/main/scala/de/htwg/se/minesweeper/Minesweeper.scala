@@ -1,7 +1,7 @@
-import de.htwg.se.minesweeper.CreateFieldFactory
 import de.htwg.se.minesweeper.aview.TUI
 import de.htwg.se.minesweeper.controller.Controller
 import de.htwg.se.minesweeper.model.*
+import de.htwg.se.minesweeper.util.CreateFieldFactory
 
 import scala.io.StdIn.readLine
 

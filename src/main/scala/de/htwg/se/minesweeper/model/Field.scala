@@ -1,5 +1,7 @@
 package de.htwg.se.minesweeper.model
 
+import de.htwg.se.minesweeper.util.CopyStrategy
+
 import scala.collection.mutable
 import scala.util.Random as r
 
