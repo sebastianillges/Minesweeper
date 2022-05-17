@@ -22,5 +22,16 @@ class ControllerSpec extends AnyWordSpec {
     "setFlag-function is called" should {
       controller.setFlag(new Coordinates(0, 0)) should be(field.setFlag(0, 0))
     }
+    "calculateBombAmount is called" should {
+      controller.calculateBombAmount(field) should be(1)
+    }
+    "createFieldWithBombs is called" should {
+      val helpField = controller.setBombs(controller.calculateBombAmount(field))
+      "have as many bombs in its field as calculated" in {
+        var count = 0
+        helpField.detectBombs(helpField).foreach(x => if (x._2) then count = count + 1)
+        count should be(1)
+      }
+    }
   }
 }

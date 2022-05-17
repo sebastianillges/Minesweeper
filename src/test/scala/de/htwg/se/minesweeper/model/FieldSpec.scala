@@ -149,7 +149,7 @@ class FieldSpec extends AnyWordSpec {
         var field = new Field(2, 2)
         field = field.setBombs(2)
         "determine the location of the bombs in the field" in {
-          field.detectBombs(field).size should be(2)
+          field.detectBombs(field).size should be(4)
         }
       }
       "detectFlags function used" should {
@@ -157,11 +157,11 @@ class FieldSpec extends AnyWordSpec {
         field = field.setBombs(1)
         field = field.setFlag(0, 0)
         "determine the number of flags placed in the field" in {
-          field.detectFlags(field).size should be(1)
+          field.detectFlags(field).size should be(2)
         }
         field = field.setFlag(0, 1)
         "be less flags on the field as bombs" in {
-          field.detectFlags(field).size should be(1)
+          field.detectFlags(field).size should be(2)
         }
       }
       "copyAndReplaceFieldCell used" should {
@@ -173,6 +173,12 @@ class FieldSpec extends AnyWordSpec {
         field = field.copyAndReplaceFieldCell(field, 0, 0, Stone.One, false)
         "replace the second tuple value of the cell with the given stone in the paramateres" in {
           field.matrix.rows(0)(0)._2 should be(Stone.One)
+        }
+      }
+      "calculateBombAmount used" should {
+        var field = new Field(8, 8)
+        "bombs make 16.14% of the field" in {
+          field.calculateBombAmount(field) should be(10)
         }
       }
     }

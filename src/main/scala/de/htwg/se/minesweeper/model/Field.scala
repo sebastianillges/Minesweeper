@@ -100,3 +100,6 @@ case class Field(matrix: Matrix[Stone, Stone]):
       resultField = Some(put(stone, x, y))
       resultField.get
     resultField.get
+
+  def calculateBombAmount(field: Field): Int =
+    Math.round((field.rows * field.cols).floatValue() * 0.164.floatValue())
