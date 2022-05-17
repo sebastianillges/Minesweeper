@@ -46,7 +46,9 @@ case class Field(matrix: Matrix[Stone, Stone]):
 
   override def toString: String = matchfield()
 
-  def put(stone: Stone, x: Int, y: Int): Field = copy(matrix.replaceCell(x, y, (this.matrix.row(x)(y)._1, stone)))
+  def put_1(stone: Stone, x: Int, y: Int): Field = copy(matrix.replaceCell(x, y, (stone, this.matrix.row(x)(y)._2)))
+
+  def put_2(stone: Stone, x: Int, y: Int): Field = copy(matrix.replaceCell(x, y, (this.matrix.row(x)(y)._1, stone)))
 
   def getCell(x: Int, y: Int): (Stone, Stone) = matrix.cell(x, y)
 
@@ -59,7 +61,7 @@ case class Field(matrix: Matrix[Stone, Stone]):
     if (count == bombNumber) then field
     else if (field.matrix.row(row)(col)._2.equals(Stone.Bomb)) then setBombsR(bombNumber, field, count)
     else
-      val resField = field.put(Stone.Bomb, row, col)
+      val resField = CopyStrategy(field, row, col, Stone.Bomb, false).strategy
       val countR = count + 1
       setBombsR(bombNumber, resField, countR)
 
@@ -70,10 +72,10 @@ case class Field(matrix: Matrix[Stone, Stone]):
   def setFlag(x: Int, y: Int): Field =
     var resultField = this
     if (detectBombAmount(detectBombs(this)) == detectFlags(this).size) then
-      if (getCell(x, y)._1 == Stone.Flag) then copyAndReplaceFieldCell(this, x, y, Stone.NotTracked, true)
+      if (getCell(x, y)._1 == Stone.Flag) then CopyStrategy(this, x, y, Stone.NotTracked, true).strategy
       else resultField
-    else if (matrix.cell(x, y)._1 == Stone.Flag) then copyAndReplaceFieldCell(this, x, y, Stone.NotTracked, true)
-    else if (matrix.cell(x, y)._1 == Stone.NotTracked) then copyAndReplaceFieldCell(this, x, y, Stone.Flag, true)
+    else if (matrix.cell(x, y)._1 == Stone.Flag) then CopyStrategy(this, x, y, Stone.NotTracked, true).strategy
+    else if (matrix.cell(x, y)._1 == Stone.NotTracked) then CopyStrategy(this, x, y, Stone.Flag, true).strategy
     else resultField
 
   def detectBombs(field: Field): Map[Coordinates, Boolean] =
@@ -95,16 +97,6 @@ case class Field(matrix: Matrix[Stone, Stone]):
       for (j <- (0 until field.cols))
         if (field.matrix.rows(i)(j)._1 == Stone.Flag) then flagMap = flagMap + (new Coordinates(i, j) -> true)
     flagMap
-
-  def copyAndReplaceFieldCell(field: Field, x: Int, y: Int, stone: Stone, stonePosition: Boolean): Field =
-    var resultField: Option[Field] = None
-    if (stonePosition == true) then
-      resultField = Some(copy(field.matrix.replaceCell(x, y, (stone, field.matrix.row(x)(y)._2))))
-      resultField.get
-    else if (stonePosition == false) then
-      resultField = Some(put(stone, x, y))
-      resultField.get
-    resultField.get
 
   def calculateBombAmount(field: Field): Int =
     Math.round((field.rows * field.cols).floatValue() * 0.164.floatValue())

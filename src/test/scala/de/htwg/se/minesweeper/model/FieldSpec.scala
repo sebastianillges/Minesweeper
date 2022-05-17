@@ -80,10 +80,18 @@ class FieldSpec extends AnyWordSpec {
             eol + "├───┼───┼───┤" + eol + "│ ■ │ ■ │ ■ │" + eol + "└───┴───┴───┘" + eol
         )
       }
-      "put function used" should {
+      "put_1 function used" should {
         val field = new Field(2, 2, (Stone.NotTracked, Stone.NotTracked))
         val eol = field.eol
-        val field2 = field.put(Stone.Flag, 0, 0)
+        val field2 = field.put_1(Stone.Flag, 0, 0)
+        "have the first element of the tuple changed" in {
+          field2.matrix.row(0)(0)._1.toString should be("\u2691")
+        }
+      }
+      "put_2 function used" should {
+        val field = new Field(2, 2, (Stone.NotTracked, Stone.NotTracked))
+        val eol = field.eol
+        val field2 = field.put_2(Stone.Flag, 0, 0)
         "have the second element of the tuple changed" in {
           field2.matrix.row(0)(0)._2.toString should be("\u2691")
         }
@@ -169,17 +177,6 @@ class FieldSpec extends AnyWordSpec {
         field = field.setFlag(0, 1)
         "be less flags on the field as bombs" in {
           field.detectFlags(field).size should be(1)
-        }
-      }
-      "copyAndReplaceFieldCell used" should {
-        var field = new Field(2, 2)
-        field = field.copyAndReplaceFieldCell(field, 0, 0, Stone.One, true)
-        "replace the first tuple value of the cell with the given stone in the paramateres" in {
-          field.matrix.rows(0)(0)._1 should be(Stone.One)
-        }
-        field = field.copyAndReplaceFieldCell(field, 0, 0, Stone.One, false)
-        "replace the second tuple value of the cell with the given stone in the paramateres" in {
-          field.matrix.rows(0)(0)._2 should be(Stone.One)
         }
       }
       "calculateBombAmount used" should {
