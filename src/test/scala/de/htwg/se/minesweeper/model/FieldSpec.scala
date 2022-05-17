@@ -152,16 +152,23 @@ class FieldSpec extends AnyWordSpec {
           field.detectBombs(field).size should be(4)
         }
       }
+      "detectBombAmount used" should {
+        var field = new Field(2, 2)
+        field = field.setBombs(2)
+        "determine the amount of bombs in the field" in {
+          field.detectBombAmount(field.detectBombs(field)) should be(2)
+        }
+      }
       "detectFlags function used" should {
         var field = new Field(2, 2)
         field = field.setBombs(1)
         field = field.setFlag(0, 0)
         "determine the number of flags placed in the field" in {
-          field.detectFlags(field).size should be(2)
+          field.detectFlags(field).size should be(1)
         }
         field = field.setFlag(0, 1)
         "be less flags on the field as bombs" in {
-          field.detectFlags(field).size should be(2)
+          field.detectFlags(field).size should be(1)
         }
       }
       "copyAndReplaceFieldCell used" should {

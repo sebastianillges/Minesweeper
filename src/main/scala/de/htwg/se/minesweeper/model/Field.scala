@@ -68,8 +68,8 @@ case class Field(matrix: Matrix[Stone, Stone]):
     else copy(this.matrix.replaceCell(x, y, (this.matrix.row(x)(y)._2, this.matrix.row(x)(y)._1)))
 
   def setFlag(x: Int, y: Int): Field =
-    var resultField = copy(matrix.replaceCell(x, y, (this.matrix.row(x)(y)._1, this.matrix.row(x)(y)._2)))
-    if (detectBombs(this).size == detectFlags(this).size) then
+    var resultField = this
+    if (detectBombAmount(detectBombs(this)) == detectFlags(this).size) then
       if (getCell(x, y)._1 == Stone.Flag) then copyAndReplaceFieldCell(this, x, y, Stone.NotTracked, true)
       else resultField
     else if (matrix.cell(x, y)._1 == Stone.Flag) then copyAndReplaceFieldCell(this, x, y, Stone.NotTracked, true)
@@ -83,6 +83,11 @@ case class Field(matrix: Matrix[Stone, Stone]):
         if (field.matrix.rows(i)(j)._2 == Stone.Bomb) then bombMap = bombMap + (new Coordinates(i, j) -> true)
         else bombMap = bombMap + (new Coordinates(i, j) -> false)
     bombMap
+
+  def detectBombAmount(map: Map[Coordinates, Boolean]): Int =
+    var count = 0
+    var result = map.foreach(x => if (x._2) then count = count + 1)
+    count
 
   def detectFlags(field: Field): Map[Coordinates, Boolean] =
     var flagMap: Map[Coordinates, Boolean] = Map.empty[Coordinates, Boolean]
