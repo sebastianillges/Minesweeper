@@ -80,22 +80,6 @@ class FieldSpec extends AnyWordSpec {
             eol + "├───┼───┼───┤" + eol + "│ ■ │ ■ │ ■ │" + eol + "└───┴───┴───┘" + eol
         )
       }
-      "put_1 function used" should {
-        val field = new Field(2, 2, (Stone.NotTracked, Stone.NotTracked))
-        val eol = field.eol
-        val field2 = field.put_1(Stone.Flag, 0, 0)
-        "have the first element of the tuple changed" in {
-          field2.matrix.row(0)(0)._1.toString should be("\u2691")
-        }
-      }
-      "put_2 function used" should {
-        val field = new Field(2, 2, (Stone.NotTracked, Stone.NotTracked))
-        val eol = field.eol
-        val field2 = field.put_2(Stone.Flag, 0, 0)
-        "have the second element of the tuple changed" in {
-          field2.matrix.row(0)(0)._2.toString should be("\u2691")
-        }
-      }
       "revealValue function used" should {
         val field = new Field(2, 2)
         val field1 = field.revealValue(0, 0)

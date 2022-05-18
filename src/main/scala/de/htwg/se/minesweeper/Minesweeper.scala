@@ -1,7 +1,7 @@
 import de.htwg.se.minesweeper.aview.TUI
 import de.htwg.se.minesweeper.controller.Controller
 import de.htwg.se.minesweeper.model.*
-import de.htwg.se.minesweeper.util.CreateFieldFactory
+import de.htwg.se.minesweeper.util.{DiffcultyStrategy, DiffcultyFactory}
 
 import scala.io.StdIn.readLine
 
@@ -10,7 +10,7 @@ import scala.io.StdIn.readLine
   println("Insert 1 for easy, 2 for medium or 3 for hard: \n")
 
   val input = readLine
-  val createField = CreateFieldFactory(input.toString)
+  val createField = DiffcultyFactory(input.toString)
   val controller = Controller(createField.run)
   val tui = TUI(controller)
   tui.run

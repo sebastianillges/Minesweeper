@@ -1,6 +1,6 @@
 package de.htwg.se.minesweeper.model
 
-import de.htwg.se.minesweeper.util.CopyStrategy
+import de.htwg.se.minesweeper.util.{CopyFactory, CopyStrategy}
 
 import scala.collection.mutable
 import scala.util.Random as r
@@ -48,10 +48,6 @@ case class Field(matrix: Matrix[Stone, Stone]):
 
   override def toString: String = matchfield()
 
-  def put_1(stone: Stone, x: Int, y: Int): Field = copy(matrix.replaceCell(x, y, (stone, this.matrix.row(x)(y)._2)))
-
-  def put_2(stone: Stone, x: Int, y: Int): Field = copy(matrix.replaceCell(x, y, (this.matrix.row(x)(y)._1, stone)))
-
   def getCell(x: Int, y: Int): (Stone, Stone) = matrix.cell(x, y)
 
   def setBombs(bombNumber: Int = 3): Field =
@@ -63,7 +59,7 @@ case class Field(matrix: Matrix[Stone, Stone]):
     if (count == bombNumber) then field
     else if (field.matrix.row(row)(col)._2.equals(Stone.Bomb)) then setBombsR(bombNumber, field, count)
     else
-      val resField = CopyStrategy(field, row, col, Stone.Bomb, false).strategy
+      val resField = CopyFactory(false, field, row, col, Stone.Bomb)
       val countR = count + 1
       setBombsR(bombNumber, resField, countR)
 
@@ -74,10 +70,10 @@ case class Field(matrix: Matrix[Stone, Stone]):
   def setFlag(x: Int, y: Int): Field =
     var resultField = this
     if (detectBombAmount(detectBombs(this)) == detectFlags(this).size) then
-      if (getCell(x, y)._1 == Stone.Flag) then CopyStrategy(this, x, y, Stone.NotTracked, true).strategy
+      if (getCell(x, y)._1 == Stone.Flag) then CopyFactory(true, this, x, y, Stone.NotTracked)
       else resultField
-    else if (matrix.cell(x, y)._1 == Stone.Flag) then CopyStrategy(this, x, y, Stone.NotTracked, true).strategy
-    else if (matrix.cell(x, y)._1 == Stone.NotTracked) then CopyStrategy(this, x, y, Stone.Flag, true).strategy
+    else if (matrix.cell(x, y)._1 == Stone.Flag) then CopyFactory(true, this, x, y, Stone.NotTracked)
+    else if (matrix.cell(x, y)._1 == Stone.NotTracked) then CopyFactory(true, this, x, y, Stone.Flag)
     else resultField
 
   def detectBombs(field: Field): Map[Coordinates, Boolean] =
