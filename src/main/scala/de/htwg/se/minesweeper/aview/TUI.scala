@@ -23,9 +23,18 @@ class TUI(controller: Controller) extends Observer:
           case None       => System.exit(0)
           case Some(move) => controller.doAndPublish(controller.revealValue, move)
       case 3 =>
-        parseInput(input) match
-          case None       => System.exit(0)
-          case Some(move) => controller.doAndPublish(controller.setFlag, move)
+        val chars = input.toCharArray
+        val helpFlag = chars(2).toString
+        helpFlag match
+          case "f" =>
+            parseInput(input) match
+              case None       => System.exit(0)
+              case Some(move) => controller.doAndPublish(controller.setFlag, move)
+          case "F" =>
+            parseInput(input) match
+              case None       => System.exit(0)
+              case Some(move) => controller.doAndPublish(controller.setFlag, move)
+          case _ => println("Ungültige eingabe")
       case 1 =>
         input match
           case "q" => System.exit(0)
