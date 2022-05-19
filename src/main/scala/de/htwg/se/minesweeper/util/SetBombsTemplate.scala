@@ -9,7 +9,7 @@ trait SetBombsTemplate:
 
   def setBombsR(bombNumber: Int, field: Field, count: Int = 0): Field
 
-class Test extends SetBombsTemplate:
+class SetBomb extends SetBombsTemplate:
   override def setBombsR(bombNumber: Int, field: Field, count: Int): Field =
     var row = r.nextInt(field.rows)
     val col = r.nextInt(field.cols)
