@@ -1,6 +1,6 @@
 package de.htwg.se.minesweeper.model
 
-import de.htwg.se.minesweeper.util.{CopyFactory, CopyStrategy}
+import de.htwg.se.minesweeper.util.{ReplaceStrategy, SetBombsTemplate, Test}
 
 import scala.collection.mutable
 import scala.util.Random as r
@@ -51,17 +51,8 @@ case class Field(matrix: Matrix[Stone, Stone]):
   def getCell(x: Int, y: Int): (Stone, Stone) = matrix.cell(x, y)
 
   def setBombs(bombNumber: Int = 3): Field =
-    setBombsR(bombNumber, this)
-
-  def setBombsR(bombNumber: Int, field: Field, count: Int = 0): Field =
-    var row = r.nextInt(rows)
-    val col = r.nextInt(cols)
-    if (count == bombNumber) then field
-    else if (field.matrix.row(row)(col)._2.equals(Stone.Bomb)) then setBombsR(bombNumber, field, count)
-    else
-      val resField = CopyFactory(false, field, row, col, Stone.Bomb)
-      val countR = count + 1
-      setBombsR(bombNumber, resField, countR)
+    val resField = new Test()
+    resField.setBombs(bombNumber, this)
 
   def revealValue(x: Int, y: Int): Field =
     if (!this.matrix.row(x)(y)._1.equals(Stone.NotTracked)) then this
@@ -70,10 +61,10 @@ case class Field(matrix: Matrix[Stone, Stone]):
   def setFlag(x: Int, y: Int): Field =
     var resultField = this
     if (detectBombAmount(detectBombs(this)) == detectFlags(this).size) then
-      if (getCell(x, y)._1 == Stone.Flag) then CopyFactory(true, this, x, y, Stone.NotTracked)
+      if (getCell(x, y)._1 == Stone.Flag) then ReplaceStrategy.strategy(true, this, x, y, Stone.NotTracked)
       else resultField
-    else if (matrix.cell(x, y)._1 == Stone.Flag) then CopyFactory(true, this, x, y, Stone.NotTracked)
-    else if (matrix.cell(x, y)._1 == Stone.NotTracked) then CopyFactory(true, this, x, y, Stone.Flag)
+    else if (matrix.cell(x, y)._1 == Stone.Flag) then ReplaceStrategy.strategy(true, this, x, y, Stone.NotTracked)
+    else if (matrix.cell(x, y)._1 == Stone.NotTracked) then ReplaceStrategy.strategy(true, this, x, y, Stone.Flag)
     else resultField
 
   def detectBombs(field: Field): Map[Coordinates, Boolean] =

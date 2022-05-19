@@ -103,15 +103,6 @@ class FieldSpec extends AnyWordSpec {
                 count = count + 1
           count should be(2)
         }
-        val field2 = field.setBombs()
-        "have the default number of Bombs in the field " in {
-          var count: Int = 0
-          for (i <- (0 until field2.rows))
-            for (j <- (0 until field2.cols))
-              if (field2.matrix.row(i)(j)._2 == Stone.Bomb)
-                count = count + 1
-          count should be(3)
-        }
       }
       "getCell function used" should {
         val field = new Field(2, 2)
