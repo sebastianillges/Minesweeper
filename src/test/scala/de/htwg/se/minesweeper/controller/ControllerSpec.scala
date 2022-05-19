@@ -8,9 +8,20 @@ class ControllerSpec extends AnyWordSpec {
   "The controller" when {
     val field = new Field(3, 3)
     val controller = new Controller(field)
+    val eol = field.eol
     "revealValue-function is called" should {
       "have the tuple elements swap positions" in {
-        controller.revealValue(new Coordinates(0, 0)) should not be (Stone.NotTracked)
+        controller.revealValue(new Coordinates(0, 0)).getCell(0, 0)._1 should not be (Stone.NotTracked)
+      }
+    }
+    "undo-function is called" should {
+      "undo the previous move" in {
+        controller.undo.getCell(0, 0)._1 should be(Stone.NotTracked)
+      }
+    }
+    "redo-function is called" should {
+      "redo the previous undo" in {
+        controller.redo.getCell(0, 0)._1 should not be (Stone.NotTracked)
       }
     }
     "toString-function is called" should {
