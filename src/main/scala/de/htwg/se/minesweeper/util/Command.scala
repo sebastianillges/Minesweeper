@@ -15,6 +15,7 @@ class UndoManager[T]:
     command.noStep(t)
   def doStep(t: T, command: Command[T]): T =
     undoStack = command :: undoStack
+    redoStack = redoStack.empty
     command.doStep(t)
   def doFlag(t: T, command: Command[T]): T =
     undoStack = command :: undoStack

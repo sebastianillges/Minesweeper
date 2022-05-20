@@ -21,7 +21,7 @@ class ControllerSpec extends AnyWordSpec {
     }
     "redo-function is called" should {
       "redo the previous undo" in {
-        controller.redo.getCell(0, 0)._1 should not be (Stone.NotTracked)
+        controller.redo.getCell(0, 0)._1 should be(Stone.NotTracked)
       }
     }
     "toString-function is called" should {
