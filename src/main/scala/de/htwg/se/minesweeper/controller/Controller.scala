@@ -2,21 +2,39 @@ package de.htwg.se.minesweeper.controller
 
 import de.htwg.se.minesweeper.model.Coordinates
 import de.htwg.se.minesweeper.model.Field
-import de.htwg.se.minesweeper.util.Observable
+import de.htwg.se.minesweeper.model.Stone
+import de.htwg.se.minesweeper.util.{Observable, UndoManager}
 
 case class Controller(var field: Field) extends Observable:
+  val undoManager = new UndoManager[Field]
 
-  def doAndPublish(doThis: Coordinates => Field, move: Coordinates) =
-    field = doThis(move)
+  def doAndPublish(doThis: Coordinates => Field, coordinates: Coordinates) =
+    field = doThis(coordinates)
     notifyObservers
+
+  def doAndPublish(doThis: => Field) =
+    field = doThis
+    notifyObservers
+
+  def getCell(coordinates: Coordinates) = field.getCell(coordinates.x, coordinates.y)
 
   def revealValue(move: Coordinates) =
-    field.revealValue(move.x, move.y)
+    if (field.getCell(move.x, move.y)._1 != Stone.NotTracked) then undoManager.noStep(field, DoCommand(move))
+    else undoManager.doStep(field, DoCommand(move))
 
-  def createFieldWithBombs =
-    if (field.matrix.rowNum == 8) then field = field.setBombs(10)
-    else if (field.matrix.rowNum == 16) then field = field.setBombs(40)
-    else if (field.matrix.rowNum == 32) then field = field.setBombs(99)
+  def undo: Field = undoManager.undoStep(field)
+
+  def redo: Field = undoManager.redoStep(field)
+
+  def calculateBombAmount(field: Field): Int =
+    field.calculateBombAmount(field)
+
+  def setBombs(bombAmount: Int): Field =
+    field = field.setBombs(bombAmount)
     notifyObservers
+    field
+
+  def setFlag(coordinates: Coordinates) =
+    undoManager.doFlag(field, DoCommand(coordinates))
 
   override def toString = field.toString

@@ -1,3 +1,5 @@
 import de.htwg.se.minesweeper.model.*
 
-val matrix = new Matrix(3, 3, (3, 3))
+var field = new Field(3, 3)
+
+field = field.setBombs(9)

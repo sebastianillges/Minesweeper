@@ -80,14 +80,6 @@ class FieldSpec extends AnyWordSpec {
             eol + "├───┼───┼───┤" + eol + "│ ■ │ ■ │ ■ │" + eol + "└───┴───┴───┘" + eol
         )
       }
-      "put function used" should {
-        val field = new Field(2, 2, (Stone.NotTracked, Stone.NotTracked))
-        val eol = field.eol
-        val field2 = field.put(Stone.Flag, 0, 0)
-        "have the second element of the tuple changed" in {
-          field2.matrix.row(0)(0)._2.toString should be("\u2691")
-        }
-      }
       "revealValue function used" should {
         val field = new Field(2, 2)
         val field1 = field.revealValue(0, 0)
@@ -111,14 +103,61 @@ class FieldSpec extends AnyWordSpec {
                 count = count + 1
           count should be(2)
         }
-        val field2 = field.setBombs()
-        "have the default number of Bombs in the field " in {
-          var count: Int = 0
-          for (i <- (0 until field2.rows))
-            for (j <- (0 until field2.cols))
-              if (field2.matrix.row(i)(j)._2 == Stone.Bomb)
-                count = count + 1
-          count should be(3)
+      }
+      "getCell function used" should {
+        val field = new Field(2, 2)
+        "get the values of the Field" in {
+          field.getCell(0, 0) should be(field.matrix.cell(0, 0)._1, field.matrix.cell(0, 0)._2)
+        }
+      }
+      "setFlag function used" should {
+        var field = new Field(2, 2)
+        field = field.setBombs(1)
+        "set a Flag if the fields first value is not tracked and if there are bombs in the field" in {
+          field.setFlag(0, 0).getCell(0, 0)._1 should be(Stone.Flag)
+        }
+        "not set a Flag if there are as many flags as bombs in the field" in {
+          field.setFlag(0, 1).getCell(0, 0)._1 should not be (Stone.Flag)
+        }
+        "remove the Flag if the fields first value is a Flag" in {
+          field = field.setFlag(0, 0)
+          field.setFlag(0, 0).getCell(0, 0)._1 should be(Stone.NotTracked)
+        }
+        "dont do anything if the fields value is already revealed" in {
+          field = field.revealValue(0, 0)
+          field.setFlag(0, 0).getCell(0, 0)._1 should not be (Stone.Flag)
+        }
+      }
+      "detectBombs function used" should {
+        var field = new Field(2, 2)
+        field = field.setBombs(2)
+        "determine the location of the bombs in the field" in {
+          field.detectBombs(field).size should be(4)
+        }
+      }
+      "detectBombAmount used" should {
+        var field = new Field(2, 2)
+        field = field.setBombs(2)
+        "determine the amount of bombs in the field" in {
+          field.detectBombAmount(field.detectBombs(field)) should be(2)
+        }
+      }
+      "detectFlags function used" should {
+        var field = new Field(2, 2)
+        field = field.setBombs(1)
+        field = field.setFlag(0, 0)
+        "determine the number of flags placed in the field" in {
+          field.detectFlags(field).size should be(1)
+        }
+        field = field.setFlag(0, 1)
+        "be less flags on the field as bombs" in {
+          field.detectFlags(field).size should be(1)
+        }
+      }
+      "calculateBombAmount used" should {
+        var field = new Field(8, 8)
+        "bombs make 16.14% of the field" in {
+          field.calculateBombAmount(field) should be(10)
         }
       }
     }
