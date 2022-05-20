@@ -26,6 +26,8 @@ case class Controller(var field: Field) extends Observable:
 
   def redo: Field = undoManager.redoStep(field)
 
+  def noStep(move: Coordinates): Field = undoManager.noStep(field, DoCommand(move))
+
   def calculateBombAmount(field: Field): Int =
     field.calculateBombAmount(field)
 

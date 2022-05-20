@@ -14,6 +14,11 @@ class ControllerSpec extends AnyWordSpec {
         controller.revealValue(new Coordinates(0, 0)).getCell(0, 0)._1 should not be (Stone.NotTracked)
       }
     }
+    "nostep-function is called" should {
+      "not change the field" in {
+        controller.noStep(new Coordinates(0, 0)).toString should be(field.toString)
+      }
+    }
     "undo-function is called" should {
       "undo the previous move" in {
         controller.undo.getCell(0, 0)._1 should be(Stone.NotTracked)
