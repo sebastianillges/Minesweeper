@@ -11,7 +11,9 @@ class ControllerSpec extends AnyWordSpec {
     val eol = field.eol
     "revealValue-function is called" should {
       "have the tuple elements swap positions" in {
-        controller.revealValue(new Coordinates(0, 0)).getCell(0, 0)._1 should not be (Stone.NotTracked)
+        val move = new Coordinates(0, 0)
+        controller.revealValue(move).getCell(move.x, move.y)._1 should not be (Stone.NotTracked)
+        controller.revealValue(move) should be(controller.revealValue(move))
       }
     }
     "nostep-function is called" should {
@@ -19,7 +21,6 @@ class ControllerSpec extends AnyWordSpec {
         controller.noStep(new Coordinates(0, 0)).toString should be(field.toString)
       }
     }
-    // hä
     "undo-function is called" should {
       "undo the previous move" in {
         controller.undo.getCell(0, 0)._1 should be(Stone.NotTracked)
