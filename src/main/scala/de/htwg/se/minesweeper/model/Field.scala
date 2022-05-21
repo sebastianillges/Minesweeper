@@ -1,6 +1,6 @@
 package de.htwg.se.minesweeper.model
 
-import de.htwg.se.minesweeper.util.{ReplaceStrategy, SetBombsTemplate, SetBomb}
+import de.htwg.se.minesweeper.util.{ReplaceStrategy, RevealStrategy}
 
 import scala.collection.mutable
 import scala.util.Random as r
@@ -51,12 +51,20 @@ case class Field(matrix: Matrix[Stone, Stone]):
   def getCell(x: Int, y: Int): (Stone, Stone) = matrix.cell(x, y)
 
   def setBombs(bombNumber: Int): Field =
-    val resField = new SetBomb()
-    resField.setBombs(bombNumber, this)
+    setBombsR(bombNumber, this)
+
+  def setBombsR(bombNumber: Int, field: Field, count: Int = 0): Field =
+    var row = r.nextInt(field.rows)
+    val col = r.nextInt(field.cols)
+    if (count == bombNumber) then field
+    else if (field.matrix.row(row)(col)._2.equals(Stone.Bomb)) then setBombsR(bombNumber, field, count)
+    else
+      val resField = ReplaceStrategy.strategy(false, field, row, col, Stone.Bomb)
+      val countR = count + 1
+      setBombsR(bombNumber, resField, countR)
 
   def revealValue(x: Int, y: Int): Field =
-    if (!this.getCell(x, y)._1.equals(Stone.NotTracked)) then this
-    else copy(this.matrix.replaceCell(x, y, (this.getCell(x, y)._2, this.getCell(x, y)._1)))
+    RevealStrategy.strategy(x, y, this)
 
   def setFlag(x: Int, y: Int): Field =
     var resultField = this

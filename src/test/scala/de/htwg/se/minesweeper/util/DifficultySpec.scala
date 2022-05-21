@@ -3,7 +3,7 @@ package de.htwg.se.minesweeper.util
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 
-class DifficultyStrategySpec extends AnyWordSpec {
+class DifficultySpec extends AnyWordSpec {
   "When DifficultyStrategy Pattern is used" should {
     var field1 = DiffcultyFactory("1")
     "create a field in easy Mode" in {

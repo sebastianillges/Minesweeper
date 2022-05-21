@@ -87,10 +87,6 @@ class FieldSpec extends AnyWordSpec {
           field.matrix.row(0)(0)._1 should be(Stone.NotTracked)
           field1.matrix.row(0)(0)._1 should be(Stone.EmptyTracked)
         }
-        "have the tuple elements not to swap positions, if its value already revealed" in {
-          val field2 = field1.revealValue(0, 0)
-          field2.matrix.row(0)(0)._1 should be(Stone.EmptyTracked)
-        }
       }
       "setBombs function used" should {
         val field = new Field(2, 2)
