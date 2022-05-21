@@ -5,9 +5,9 @@ import de.htwg.se.minesweeper.util.{ReplaceStrategy, RevealStrategy}
 import scala.collection.mutable
 import scala.util.Random as r
 
-case class Field(matrix: Matrix[Stone, Stone]):
-  def this(rows: Int = 3, cols: Int = 3, filling: (Stone, Stone) = (Stone.NotTracked, Stone.EmptyTracked)) =
-    this(new Matrix[Stone, Stone](rows, cols, filling))
+case class Field(matrix: Matrix[Stone, Stone, Int]):
+  def this(rows: Int = 3, cols: Int = 3, filling: (Stone, Stone, Int) = (Stone.NotTracked, Stone.EmptyTracked, 0)) =
+    this(new Matrix[Stone, Stone, Int](rows, cols, filling))
 
   val cols: Int = matrix.colNum
   val rows: Int = matrix.rowNum
@@ -48,7 +48,7 @@ case class Field(matrix: Matrix[Stone, Stone]):
 
   override def toString: String = matchfield()
 
-  def getCell(x: Int, y: Int): (Stone, Stone) = matrix.cell(x, y)
+  def getCell(x: Int, y: Int): (Stone, Stone, Int) = matrix.cell(x, y)
 
   def setBombs(bombNumber: Int): Field =
     setBombsR(bombNumber, this)

@@ -103,7 +103,11 @@ class FieldSpec extends AnyWordSpec {
       "getCell function used" should {
         val field = new Field(2, 2)
         "get the values of the Field" in {
-          field.getCell(0, 0) should be(field.matrix.cell(0, 0)._1, field.matrix.cell(0, 0)._2)
+          field.getCell(0, 0) should be(
+            field.matrix.cell(0, 0)._1,
+            field.matrix.cell(0, 0)._2,
+            field.matrix.cell(0, 0)._3
+          )
         }
       }
       "setFlag function used" should {

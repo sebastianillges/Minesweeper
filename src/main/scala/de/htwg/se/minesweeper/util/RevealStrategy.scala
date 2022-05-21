@@ -8,7 +8,9 @@ object RevealStrategy:
   else strategy2(x, y, field)
 
   private def swap(x: Int, y: Int, field: Field): Field =
-    field.copy(field.matrix.replaceCell(x, y, (field.getCell(x, y)._2, field.getCell(x, y)._1)))
+    field.copy(
+      field.matrix.replaceCell(x, y, (field.getCell(x, y)._2, field.getCell(x, y)._1, field.matrix.row(x)(y)._3))
+    )
 
   private def strategy1(x: Int, y: Int, field: Field): Field =
     var res: Field = field
