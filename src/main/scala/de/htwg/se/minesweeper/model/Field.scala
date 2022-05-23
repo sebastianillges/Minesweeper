@@ -3,6 +3,7 @@ package de.htwg.se.minesweeper.model
 import de.htwg.se.minesweeper.util.{ReplaceStrategy, RevealStrategy}
 
 import scala.collection.mutable
+import scala.language.postfixOps
 import scala.util.Random as r
 
 case class Field(matrix: Matrix[Stone, Stone, Int]):
@@ -39,12 +40,36 @@ case class Field(matrix: Matrix[Stone, Stone, Int]):
       .row(row)
       .map(_._1)
       .map(" " * ((cellWidth - 1) / 2) + _ + " " * ((cellWidth - 1) / 2))
-      .mkString("│", "│", "│") + eol
+      .mkString("│", "│", "│")
 
   def matchfield(cellWidth: Int = 3): String =
-    (0 until rows)
-      .map(cells(_, cellWidth))
-      .mkString(firstBar(cellWidth, cols), bar(cellWidth, cols), lastBar(cellWidth, cols))
+    (" " * (cellWidth + 1))
+      .+(
+        (0 until cols)
+          .map(x => if (x < 10) then x.toString + (" ") * cellWidth else x.toString + (" ") * ((cellWidth - 1)))
+          .mkString
+      )
+      .+("\n")
+      .+(
+        (0 until rows)
+          .map(x =>
+            if (x < 10) then x.toString + " " + cells(x, cellWidth) + " " + x.toString + "\n"
+            else x.toString + cells(x, cellWidth) + " " + x.toString + "\n"
+          )
+          .mkString(
+            "  " + firstBar(cellWidth, cols),
+            "  " + bar(cellWidth, cols),
+            "  " + lastBar(cellWidth, cols)
+          )
+      )
+      .+(
+        (" " * (cellWidth + 1))
+          .+(
+            (0 until cols)
+              .map(x => if (x < 10) then x.toString + (" ") * cellWidth else x.toString + (" ") * ((cellWidth - 1)))
+              .mkString
+          )
+      )
 
   override def toString: String = matchfield()
 
