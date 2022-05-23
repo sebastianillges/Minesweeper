@@ -68,7 +68,7 @@ case class Field(matrix: Matrix[Stone, Stone, Int]):
 
   def setFlag(x: Int, y: Int): Field =
     var resultField = this
-    if (detectBombAmount(detectBombs(this)) == detectFlags(this).size) then
+    if (detectBombs(this).size == detectFlags(this).size) then
       if (getCell(x, y)._1 == Stone.Flag) then ReplaceStrategy.strategy(true, this, x, y, Stone.NotTracked)
       else resultField
     else if (getCell(x, y)._1 == Stone.Flag) then ReplaceStrategy.strategy(true, this, x, y, Stone.NotTracked)
@@ -80,13 +80,7 @@ case class Field(matrix: Matrix[Stone, Stone, Int]):
     for (i <- (0 until field.rows))
       for (j <- (0 until field.cols))
         if (field.getCell(i, j)._2 == Stone.Bomb) then bombMap = bombMap + (new Coordinates(i, j) -> true)
-        else bombMap = bombMap + (new Coordinates(i, j) -> false)
     bombMap
-
-  def detectBombAmount(map: Map[Coordinates, Boolean]): Int =
-    var count = 0
-    var result = map.foreach(x => if (x._2) then count = count + 1)
-    count
 
   def detectFlags(field: Field): Map[Coordinates, Boolean] =
     var flagMap: Map[Coordinates, Boolean] = Map.empty[Coordinates, Boolean]
@@ -97,3 +91,37 @@ case class Field(matrix: Matrix[Stone, Stone, Int]):
 
   def calculateBombAmount(field: Field): Int =
     Math.round((field.rows * field.cols).floatValue() * 0.164.floatValue())
+
+  def putValues(field: Field): Field =
+    var res = field
+    field
+      .detectBombs(field)
+      .foreach(a =>
+        val x = a._1.x
+        val y = a._1.y
+        for (i <- (-1 until (2)))
+          for (j <- (-1 until (2)))
+            val m = x + i
+            val n = y + j
+            if (m > -1 && m < res.rows && n > -1 && n < res.cols) then
+              res = res.copy(
+                res.matrix.replaceCell(m, n, (res.getCell(m, n)._1, res.getCell(m, n)._2, res.matrix.row(m)(n)._3 + 1))
+              )
+      )
+    res
+
+  def showValues(field: Field): Field =
+    var res = field
+    res = res.putValues(res)
+    for (i <- (0 until res.rows))
+      for (j <- (0 until res.cols))
+        if (res.matrix.row(i)(j)._2.equals(Stone.Bomb)) then res
+        else if (res.matrix.row(i)(j)._3 == 1) then res = ReplaceStrategy.strategy(false, res, i, j, Stone.One)
+        else if (res.matrix.row(i)(j)._3 == 2) then res = ReplaceStrategy.strategy(false, res, i, j, Stone.Two)
+        else if (res.matrix.row(i)(j)._3 == 3) then res = ReplaceStrategy.strategy(false, res, i, j, Stone.Three)
+        else if (res.matrix.row(i)(j)._3 == 4) then res = ReplaceStrategy.strategy(false, res, i, j, Stone.Four)
+        else if (res.matrix.row(i)(j)._3 == 5) then res = ReplaceStrategy.strategy(false, res, i, j, Stone.Five)
+        else if (res.matrix.row(i)(j)._3 == 6) then res = ReplaceStrategy.strategy(false, res, i, j, Stone.Six)
+        else if (res.matrix.row(i)(j)._3 == 7) then res = ReplaceStrategy.strategy(false, res, i, j, Stone.Seven)
+        else if (res.matrix.row(i)(j)._3 == 8) then res = ReplaceStrategy.strategy(false, res, i, j, Stone.Eight)
+    res

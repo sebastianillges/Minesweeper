@@ -33,6 +33,7 @@ case class Controller(var field: Field) extends Observable:
 
   def setBombs(bombAmount: Int): Field =
     field = field.setBombs(bombAmount)
+    field = field.showValues(field)
     notifyObservers
     field
 

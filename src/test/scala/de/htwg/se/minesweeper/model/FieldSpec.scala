@@ -132,14 +132,7 @@ class FieldSpec extends AnyWordSpec {
         var field = new Field(2, 2)
         field = field.setBombs(2)
         "determine the location of the bombs in the field" in {
-          field.detectBombs(field).size should be(4)
-        }
-      }
-      "detectBombAmount used" should {
-        var field = new Field(2, 2)
-        field = field.setBombs(2)
-        "determine the amount of bombs in the field" in {
-          field.detectBombAmount(field.detectBombs(field)) should be(2)
+          field.detectBombs(field).size should be(2)
         }
       }
       "detectFlags function used" should {
@@ -158,6 +151,20 @@ class FieldSpec extends AnyWordSpec {
         var field = new Field(8, 8)
         "bombs make 16.14% of the field" in {
           field.calculateBombAmount(field) should be(10)
+        }
+        "showValues used" should {
+          var field = new Field(2, 2)
+          "show the Value of the cell" in {
+            field = field.putValues(field)
+            field.showValues(field).getCell(0, 0)._2 should be(Stone.EmptyTracked)
+          }
+        }
+        "putValues used" should {
+          var field = new Field(2, 2)
+          "Increase the value of the cell" in {
+            field = field.putValues(field)
+            field.getCell(0, 0)._3 should be(0)
+          }
         }
       }
     }
