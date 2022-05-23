@@ -18,6 +18,12 @@ class TUI(controller: Controller) extends Observer:
   def getInputAndPrintLoop(): Unit =
     val input = readLine
     input.size match
+      case 1 =>
+        input match
+          case "q" => System.exit(0)
+          case "u" => controller.doAndPublish(controller.undo)
+          case "r" => controller.doAndPublish(controller.redo)
+          case _   => println("Ungültige eingabe")
       case 2 =>
         parseInput(input) match
           case None       => System.exit(0)
@@ -35,12 +41,7 @@ class TUI(controller: Controller) extends Observer:
               case None       => System.exit(0)
               case Some(move) => controller.doAndPublish(controller.setFlag, move)
           case _ => println("Ungültige eingabe")
-      case 1 =>
-        input match
-          case "q" => System.exit(0)
-          case "u" => controller.doAndPublish(controller.undo)
-          case "r" => controller.doAndPublish(controller.redo)
-          case _   => println("Ungültige eingabe")
+      case _ => println("Ungültige eingabe")
 
     getInputAndPrintLoop()
 
