@@ -12,9 +12,9 @@ import scala.swing.event.*
 
 class SwingGui(controller: Controller) extends Frame with Observer :
   controller.add(this)
-  
+
   title = "TicTacToe"
-  preferredSize = new Dimension(600,600)
+  preferredSize = new Dimension(900,900)
   resizable = false
   menuBar = new MenuBar {
     contents += new Menu("File") {
@@ -29,10 +29,7 @@ class SwingGui(controller: Controller) extends Frame with Observer :
       })
     }
   }
-  contents = new BorderPanel {
-    add(new Label("Welcome to Minesweeper"), BorderPanel.Position.North)
-    add(new CellPanel(controller.field.rows, controller.field.cols), BorderPanel.Position.Center)
-  }
+
   pack()
   centerOnScreen()
   open()
@@ -46,13 +43,11 @@ class SwingGui(controller: Controller) extends Frame with Observer :
 
   class CellPanel(x: Int, y: Int) extends GridPanel(x, y) :
     (0 until x)
-      .map(a => (0 until y)
-        .map(b => List(controller.field.matrix.cell(a,b))
-          .map(t => contents += new CellButton(a, b, t._1.toString))))
+    .map(a => (0 until y)
+      .map(b => List(controller.field.matrix.cell(a,b))
+        .map(t => contents += new CellButton(a, b, t._1.toString))))
 
     def button(stone: String) = new Button(stone)
-
-
 
   class CellButton(x: Int, y: Int, stone: String) extends Button(stone) :
     listenTo(mouse.clicks)
