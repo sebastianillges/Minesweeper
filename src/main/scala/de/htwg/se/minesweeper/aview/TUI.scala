@@ -2,22 +2,26 @@ package de.htwg.se.minesweeper.aview
 
 import de.htwg.se.minesweeper.controller.Controller
 import de.htwg.se.minesweeper.model.{Coordinates, Field}
-import de.htwg.se.minesweeper.util.Observer
+import de.htwg.se.minesweeper.util.{Event, Observer}
 
 import scala.io.StdIn.readLine
 import scala.runtime.Nothing$
 
 class TUI(controller: Controller) extends Observer:
   controller.add(this)
-  def run =
+  var continue = true
+  def run(): Any =
     controller.setBombs(controller.calculateBombAmount(controller.field))
-    getInputAndPrintLoop()
+    getInputAndPrintLoop
 
-  override def update: Unit = println(controller.toString)
+  override def update(e: Event): Unit =
+    e match
+      case Event.Quit => continue = false
+      case Event.Move => println(controller.toString)
 
-  def getInputAndPrintLoop(): Unit =
+  def getInputAndPrintLoop: Any =
     val input = readLine
-    input.size match
+    input.length match
       case 1 =>
         input match
           case "q" => System.exit(0)
@@ -43,7 +47,7 @@ class TUI(controller: Controller) extends Observer:
           case _ => println("Ungültige eingabe")
       case _ => println("Ungültige eingabe")
 
-    getInputAndPrintLoop()
+    if continue then getInputAndPrintLoop
 
   def parseInput(input: String): Option[Coordinates] =
     val chars = input.toCharArray

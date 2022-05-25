@@ -1,7 +1,8 @@
-import de.htwg.se.minesweeper.aview.TUI
+package de.htwg.se.minesweeper
+import de.htwg.se.minesweeper.aview.{SwingGui, TUI}
 import de.htwg.se.minesweeper.controller.Controller
 import de.htwg.se.minesweeper.model.*
-import de.htwg.se.minesweeper.util.{DiffcultyFactory, Diffculty}
+import de.htwg.se.minesweeper.util.{Difficulty, DifficultyFactory}
 
 import scala.io.StdIn.readLine
 import scala.util.{Failure, Success, Try}
@@ -19,9 +20,10 @@ import scala.util.{Failure, Success, Try}
           " if you want to place a Flag in this Field write a f behind the cooridnates"
       )
       println("\n Press q to exit, u to undo and r to redo your move")
-      val createField = DiffcultyFactory(difficulty.toString)
+      val createField = DifficultyFactory(difficulty.toString)
       val controller = Controller(createField.run)
       val tui = TUI(controller)
-      tui.run
+      val swing = new SwingGui(controller)
+      tui.run()
     case Failure(e) => println("Ungültige Eingabe")
   }
