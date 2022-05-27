@@ -13,10 +13,10 @@ class SwingGui(controller: Controller) extends Frame with Observer:
   controller.add(this)
 
   title = "TicTacToe"
-  preferredSize = new Dimension(900, 900)
+  preferredSize = new Dimension(600, 600)
   resizable = false
   menuBar = new MenuBar {
-    contents += new Menu("File") {
+    contents += new Menu("Edit") {
       contents += new MenuItem(Action("Exit") {
         sys.exit(0)
       })
