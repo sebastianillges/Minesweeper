@@ -51,33 +51,27 @@ class FieldSpec extends AnyWordSpec {
         field1.lastBar(5, 3) should be("└─────┴─────┴─────┘" + eol)
       }
       "have cells as String of form '│ \u25A0 │ \u25A0 │ \u25A0 │'" in {
-        field.cells(0) should be("│ \u25A0 │ \u25A0 │ \u25A0 │" + eol)
+        field.cells(0) should be("│ \u25A0 │ \u25A0 │ \u25A0 │")
       }
       "have scalable cells" in {
-        field1.cells(0, 1) should be("│\u25A0│" + eol)
-        field2.cells(0, 1) should be("│\u25A0│\u25A0│" + eol)
-        field.cells(0, 3) should be("│ \u25A0 │ \u25A0 │ \u25A0 │" + eol)
+        field1.cells(0, 1) should be("│\u25A0│")
+        field2.cells(0, 1) should be("│\u25A0│\u25A0│")
+        field.cells(0, 3) should be("│ \u25A0 │ \u25A0 │ \u25A0 │")
       }
       "have a matchField in the form " +
         "┌─┐" +
         "\u25A0" +
         "└─┘" in {
-          field1.matchfield(1) should be("┌─┐" + eol + "│\u25A0│" + eol + "└─┘" + eol)
-          field3.matchfield(3) should be(
-            "┌───┬───┬───┐" + eol + "│ \u25A0 │ \u25A0 │ \u25A0 │" + eol + "├───┼───┼───┤" +
-              eol + "│ \u25A0 │ \u25A0 │ \u25A0 │" + eol + "└───┴───┴───┘" + eol
-          )
+          field1.matchfield(1) should be("  0 " + eol + "  ┌─┐" + eol + "0 │\u25A0│ 0" + eol + "  └─┘" + eol + "  0 ")
         }
       "have a matchfield with default parameters" in {
-        field.matchfield() should be(
-          "┌───┬───┬───┐" + eol + "│ ■ │ ■ │ ■ │" + eol + "├───┼───┼───┤" + eol + "│ ■ │ ■ │ ■ │" +
-            eol + "├───┼───┼───┤" + eol + "│ ■ │ ■ │ ■ │" + eol + "└───┴───┴───┘" + eol
+        field1.matchfield() should be(
+          "    0   " + eol + "  ┌───┐" + eol + "0 │ ■ │ 0" + eol + "  └───┘" + eol + "    0   "
         )
       }
       "have a toString function" in {
-        field.toString should be(
-          "┌───┬───┬───┐" + eol + "│ ■ │ ■ │ ■ │" + eol + "├───┼───┼───┤" + eol + "│ ■ │ ■ │ ■ │" +
-            eol + "├───┼───┼───┤" + eol + "│ ■ │ ■ │ ■ │" + eol + "└───┴───┴───┘" + eol
+        field1.toString should be(
+          "    0   " + eol + "  ┌───┐" + eol + "0 │ ■ │ 0" + eol + "  └───┘" + eol + "    0   "
         )
       }
       "revealValue function used" should {
@@ -86,10 +80,6 @@ class FieldSpec extends AnyWordSpec {
         "have the tuple elements swap positions" in {
           field.matrix.row(0)(0)._1 should be(Stone.NotTracked)
           field1.matrix.row(0)(0)._1 should be(Stone.EmptyTracked)
-        }
-        "have the tuple elements not to swap positions, if its value already revealed" in {
-          val field2 = field1.revealValue(0, 0)
-          field2.matrix.row(0)(0)._1 should be(Stone.EmptyTracked)
         }
       }
       "setBombs function used" should {
@@ -107,7 +97,11 @@ class FieldSpec extends AnyWordSpec {
       "getCell function used" should {
         val field = new Field(2, 2)
         "get the values of the Field" in {
-          field.getCell(0, 0) should be(field.matrix.cell(0, 0)._1, field.matrix.cell(0, 0)._2)
+          field.getCell(0, 0) should be(
+            field.matrix.cell(0, 0)._1,
+            field.matrix.cell(0, 0)._2,
+            field.matrix.cell(0, 0)._3
+          )
         }
       }
       "setFlag function used" should {
@@ -132,14 +126,7 @@ class FieldSpec extends AnyWordSpec {
         var field = new Field(2, 2)
         field = field.setBombs(2)
         "determine the location of the bombs in the field" in {
-          field.detectBombs(field).size should be(4)
-        }
-      }
-      "detectBombAmount used" should {
-        var field = new Field(2, 2)
-        field = field.setBombs(2)
-        "determine the amount of bombs in the field" in {
-          field.detectBombAmount(field.detectBombs(field)) should be(2)
+          field.detectBombs(field).size should be(2)
         }
       }
       "detectFlags function used" should {
@@ -158,6 +145,22 @@ class FieldSpec extends AnyWordSpec {
         var field = new Field(8, 8)
         "bombs make 16.14% of the field" in {
           field.calculateBombAmount(field) should be(10)
+        }
+        "showValues used" should {
+          var field = new Field(2, 2)
+          "show the Value of the cell" in {
+            field = field.putValues(field)
+            field.showValues(field).getCell(0, 0)._2 should be(Stone.EmptyTracked)
+          }
+        }
+        "putValues used" should {
+          var field = new Field(1, 2)
+          "Increase the value of the cell" in {
+            field = field.setBombs(1)
+            field = field.putValues(field)
+            if (field.getCell(0, 0)._2.equals(Stone.Bomb)) then field.getCell(0, 1)._3 should be(1)
+            else field.getCell(0, 0)._3 should be(1)
+          }
         }
       }
     }

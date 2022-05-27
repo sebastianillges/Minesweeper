@@ -6,7 +6,7 @@ import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 
 class ReplaceStrategySpec extends AnyWordSpec {
-  "When CopyStrategy Pattern is used" should {
+  "When ReplaceStrategy Pattern is used" should {
     var field = new Field(3, 3)
     field = ReplaceStrategy.strategy(true, field, 0, 0, Stone.Bomb)
     field = ReplaceStrategy.strategy(false, field, 0, 0, Stone.NotTracked)
