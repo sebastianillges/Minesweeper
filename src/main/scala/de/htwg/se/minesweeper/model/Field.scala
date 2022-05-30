@@ -75,10 +75,10 @@ case class Field(matrix: Matrix[Stone, Stone, Int]) extends IField:
 
   def getCell(x: Int, y: Int): (Stone, Stone, Int) = matrix.cell(x, y)
 
-  def setBombs(bombNumber: Int): IField =
+  def setBombs(bombNumber: Int): Field =
     setBombsR(bombNumber, this)
 
-  def setBombsR(bombNumber: Int, field: Field, count: Int = 0): IField =
+  def setBombsR(bombNumber: Int, field: Field, count: Int = 0): Field =
     var row = r.nextInt(field.rows)
     val col = r.nextInt(field.cols)
     if (count == bombNumber) then field
@@ -88,10 +88,10 @@ case class Field(matrix: Matrix[Stone, Stone, Int]) extends IField:
       val countR = count + 1
       setBombsR(bombNumber, resField, countR)
 
-  def revealValue(x: Int, y: Int): IField =
+  def revealValue(x: Int, y: Int): Field =
     RevealStrategy.strategy(x, y, this)
 
-  def setFlag(x: Int, y: Int): IField =
+  def setFlag(x: Int, y: Int): Field =
     var resultField = this
     if (detectBombs().size == detectFlags().size) then
       if (getCell(x, y)._1 == Stone.Flag) then ReplaceStrategy.strategy(true, this, x, y, Stone.NotTracked)
@@ -135,7 +135,7 @@ case class Field(matrix: Matrix[Stone, Stone, Int]) extends IField:
       )
     res
 
-  def showValues(): IField =
+  def showValues(): Field =
     var res = this
     res = res.putValues()
     for (i <- (0 until res.rows))
