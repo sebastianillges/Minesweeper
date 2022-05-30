@@ -1,17 +1,17 @@
 package de.htwg.se.minesweeper.aview
 
-import de.htwg.se.minesweeper.controller.Controller
+import de.htwg.se.minesweeper.controller.{Controller, IController}
 import de.htwg.se.minesweeper.model.{Coordinates, Field}
 import de.htwg.se.minesweeper.util.{Event, Observer}
 
 import scala.io.StdIn.readLine
 import scala.runtime.Nothing$
 
-class TUI(controller: Controller) extends Observer:
+class TUI(controller: IController) extends Observer:
   controller.add(this)
   var continue = true
   def run(): Any =
-    controller.setBombs(controller.calculateBombAmount(controller.field))
+    controller.setBombs(controller.calculateBombAmount())
     getInputAndPrintLoop
 
   override def update(e: Event): Unit =

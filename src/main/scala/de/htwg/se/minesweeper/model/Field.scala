@@ -6,7 +6,7 @@ import scala.collection.mutable
 import scala.language.postfixOps
 import scala.util.Random as r
 
-case class Field(matrix: Matrix[Stone, Stone, Int]):
+case class Field(matrix: Matrix[Stone, Stone, Int]) extends IField:
   def this(rows: Int = 3, cols: Int = 3, filling: (Stone, Stone, Int) = (Stone.NotTracked, Stone.EmptyTracked, 0)) =
     this(new Matrix[Stone, Stone, Int](rows, cols, filling))
 
@@ -75,10 +75,10 @@ case class Field(matrix: Matrix[Stone, Stone, Int]):
 
   def getCell(x: Int, y: Int): (Stone, Stone, Int) = matrix.cell(x, y)
 
-  def setBombs(bombNumber: Int): Field =
+  def setBombs(bombNumber: Int): IField =
     setBombsR(bombNumber, this)
 
-  def setBombsR(bombNumber: Int, field: Field, count: Int = 0): Field =
+  def setBombsR(bombNumber: Int, field: Field, count: Int = 0): IField =
     var row = r.nextInt(field.rows)
     val col = r.nextInt(field.cols)
     if (count == bombNumber) then field
@@ -88,39 +88,39 @@ case class Field(matrix: Matrix[Stone, Stone, Int]):
       val countR = count + 1
       setBombsR(bombNumber, resField, countR)
 
-  def revealValue(x: Int, y: Int): Field =
+  def revealValue(x: Int, y: Int): IField =
     RevealStrategy.strategy(x, y, this)
 
-  def setFlag(x: Int, y: Int): Field =
+  def setFlag(x: Int, y: Int): IField =
     var resultField = this
-    if (detectBombs(this).size == detectFlags(this).size) then
+    if (detectBombs().size == detectFlags().size) then
       if (getCell(x, y)._1 == Stone.Flag) then ReplaceStrategy.strategy(true, this, x, y, Stone.NotTracked)
       else resultField
     else if (getCell(x, y)._1 == Stone.Flag) then ReplaceStrategy.strategy(true, this, x, y, Stone.NotTracked)
     else if (getCell(x, y)._1 == Stone.NotTracked) then ReplaceStrategy.strategy(true, this, x, y, Stone.Flag)
     else resultField
 
-  def detectBombs(field: Field): Map[Coordinates, Boolean] =
+  def detectBombs(): Map[Coordinates, Boolean] =
     var bombMap: Map[Coordinates, Boolean] = Map.empty[Coordinates, Boolean]
-    for (i <- (0 until field.rows))
-      for (j <- (0 until field.cols))
-        if (field.getCell(i, j)._2 == Stone.Bomb) then bombMap = bombMap + (new Coordinates(i, j) -> true)
+    for (i <- (0 until this.rows))
+      for (j <- (0 until this.cols))
+        if (this.getCell(i, j)._2 == Stone.Bomb) then bombMap = bombMap + (new Coordinates(i, j) -> true)
     bombMap
 
-  def detectFlags(field: Field): Map[Coordinates, Boolean] =
+  def detectFlags(): Map[Coordinates, Boolean] =
     var flagMap: Map[Coordinates, Boolean] = Map.empty[Coordinates, Boolean]
-    for (i <- (0 until field.rows))
-      for (j <- (0 until field.cols))
-        if (field.getCell(i, j)._1 == Stone.Flag) then flagMap = flagMap + (new Coordinates(i, j) -> true)
+    for (i <- (0 until this.rows))
+      for (j <- (0 until this.cols))
+        if (this.getCell(i, j)._1 == Stone.Flag) then flagMap = flagMap + (new Coordinates(i, j) -> true)
     flagMap
 
-  def calculateBombAmount(field: Field): Int =
-    Math.round((field.rows * field.cols).floatValue() * 0.164.floatValue())
+  def calculateBombAmount(): Int =
+    Math.round((this.rows * this.cols).floatValue() * 0.164.floatValue())
 
-  def putValues(field: Field): Field =
-    var res = field
-    field
-      .detectBombs(field)
+  def putValues(): Field =
+    var res = this
+    this
+      .detectBombs()
       .foreach(a =>
         val x = a._1.x
         val y = a._1.y
@@ -135,9 +135,9 @@ case class Field(matrix: Matrix[Stone, Stone, Int]):
       )
     res
 
-  def showValues(field: Field): Field =
-    var res = field
-    res = res.putValues(res)
+  def showValues(): IField =
+    var res = this
+    res = res.putValues()
     for (i <- (0 until res.rows))
       for (j <- (0 until res.cols))
         if (res.matrix.row(i)(j)._2.equals(Stone.Bomb)) then res
@@ -150,3 +150,5 @@ case class Field(matrix: Matrix[Stone, Stone, Int]):
         else if (res.matrix.row(i)(j)._3 == 7) then res = ReplaceStrategy.strategy(false, res, i, j, Stone.Seven)
         else if (res.matrix.row(i)(j)._3 == 8) then res = ReplaceStrategy.strategy(false, res, i, j, Stone.Eight)
     res
+
+  def matrixx(): Matrix[Stone, Stone, Int] = this.matrix
