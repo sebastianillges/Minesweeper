@@ -34,9 +34,6 @@ class ControllerSpec extends AnyWordSpec {
     "toString-function is called" should {
       controller.toString should be(field.toString)
     }
-    "getCell-function is called" should {
-      controller.getCell(new Coordinates(0, 0)) should be(controller.field.matrix.cell(0, 0))
-    }
     "setFlag-function is called" should {
       controller.setFlag(new Coordinates(0, 0)) should be(field.setFlag(0, 0))
     }

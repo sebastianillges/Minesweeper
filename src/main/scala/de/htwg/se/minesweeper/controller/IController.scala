@@ -7,7 +7,6 @@ trait IController extends Observable:
   def doAndPublish(doThis: Coordinates => IField, coordinates: Coordinates): Unit
   def doAndPublish(doThis: => IField): Unit
   def quit(): Unit
-  def getCell(coordinates: Coordinates): (Stone, Stone, Int)
   def calculateBombAmount(): Int
   def revealValue(move: Coordinates): IField
   def undo: IField

@@ -20,9 +20,6 @@ case class Controller(var field: IField) extends IController with Observable:
 
   def quit(): Unit = notifyObservers(Event.Quit)
 
-  def getCell(coordinates: Coordinates): (Stone, Stone, Int) =
-    field.getCell(coordinates.x, coordinates.y)
-
   def revealValue(move: Coordinates): IField =
     if field.getCell(move.x, move.y)._1 != Stone.NotTracked then undoManager.noStep(field, DoCommand(move))
     else undoManager.doStep(field, DoCommand(move))
@@ -46,7 +43,6 @@ case class Controller(var field: IField) extends IController with Observable:
     field
 
   def setFlag(coordinates: Coordinates): IField =
-    field = new Field(field.rows, field.cols)
     undoManager.doFlag(field, DoCommand(coordinates))
 
   override def toString: String = field.toString
