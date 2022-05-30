@@ -148,11 +148,10 @@ class FieldSpec extends AnyWordSpec {
         "putValues used" should {
           var field = new Field(1, 2)
           "Increase the value of the cell" in {
-            field = field
-            field = field
-            if (field.setBombs(1).putValues().getCell(0, 0)._2.equals(Stone.Bomb)) then
-              field.getCell(0, 1)._3 should be(1)
-            else field.setBombs(1).putValues().getCell(0, 0)._3 should be(1)
+            field = field.setBombs(1)
+            field = field.putValues()
+            if (field.getCell(0, 0)._2.equals(Stone.Bomb)) then field.getCell(0, 1)._3 should be(1)
+            else field.getCell(0, 0)._3 should be(1)
           }
         }
       }

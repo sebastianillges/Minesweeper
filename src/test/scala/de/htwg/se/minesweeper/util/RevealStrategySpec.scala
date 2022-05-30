@@ -25,7 +25,7 @@ class RevealStrategySpec extends AnyWordSpec {
       var field = new Field(2, 2)
       field = field.setBombs(1)
       field = field.showValues()
-      if (field.getCell(0, 0)._1.equals(Stone.Bomb)) then
+      if (field.getCell(0, 0)._2.equals(Stone.Bomb)) then
         field = RevealStrategy.strategy(0, 1, field)
         field.getCell(0, 1)._1.toString should be("1")
       else
