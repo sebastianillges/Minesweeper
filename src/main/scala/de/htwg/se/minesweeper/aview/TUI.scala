@@ -1,13 +1,13 @@
 package de.htwg.se.minesweeper.aview
 
-import de.htwg.se.minesweeper.controller.{Controller, IController}
+import de.htwg.se.minesweeper.controller.{Controller, ControllerInterface}
 import de.htwg.se.minesweeper.model.{Coordinates, Field}
 import de.htwg.se.minesweeper.util.{Event, Observer}
 
 import scala.io.StdIn.readLine
 import scala.runtime.Nothing$
 
-class TUI(controller: IController) extends Observer:
+class TUI(controller: ControllerInterface) extends Observer:
   controller.add(this)
   var continue = true
   def run(): Any =

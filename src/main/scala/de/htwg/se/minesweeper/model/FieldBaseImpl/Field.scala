@@ -6,7 +6,7 @@ import scala.collection.mutable
 import scala.language.postfixOps
 import scala.util.Random as r
 
-case class Field(matrix: Matrix[Stone, Stone, Int]) extends IField:
+case class Field(matrix: Matrix[Stone, Stone, Int]) extends FieldInterface:
   def this(rows: Int = 3, cols: Int = 3, filling: (Stone, Stone, Int) = (Stone.NotTracked, Stone.EmptyTracked, 0)) =
     this(new Matrix[Stone, Stone, Int](rows, cols, filling))
 

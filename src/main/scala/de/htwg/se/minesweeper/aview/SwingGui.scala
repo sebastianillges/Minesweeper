@@ -1,6 +1,6 @@
 package de.htwg.se.minesweeper.aview
 
-import de.htwg.se.minesweeper.controller.IController
+import de.htwg.se.minesweeper.controller.ControllerInterface
 import de.htwg.se.minesweeper.model.{Coordinates, Field, Stone}
 import de.htwg.se.minesweeper.util.Observer
 import de.htwg.se.minesweeper.util.Event
@@ -9,7 +9,7 @@ import scala.swing.event.MouseEvent
 import scala.swing.*
 import scala.swing.event.*
 
-class SwingGui(controller: IController) extends Frame with Observer:
+class SwingGui(controller: ControllerInterface) extends Frame with Observer:
   controller.add(this)
 
   title = "Minesweeper"
