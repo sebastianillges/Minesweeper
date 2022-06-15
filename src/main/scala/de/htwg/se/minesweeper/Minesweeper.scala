@@ -1,6 +1,7 @@
 package de.htwg.se.minesweeper
+import com.google.inject.Guice
 import de.htwg.se.minesweeper.aview.{SwingGui, TUI}
-import de.htwg.se.minesweeper.controller.Controller
+import de.htwg.se.minesweeper.controller.ControllerInterface
 import de.htwg.se.minesweeper.model.*
 import de.htwg.se.minesweeper.util.{Difficulty, DifficultyFactory}
 
@@ -20,8 +21,9 @@ import scala.util.{Failure, Success, Try}
           " if you want to place a Flag in this Field write a f behind the cooridnates"
       )
       println("\n Press q to exit, u to undo and r to redo your move")
+      val injector = Guice.createInjector(new MinesweeperModule)
       val createField = DifficultyFactory(difficulty.toString)
-      val controller = Controller(createField.run)
+      val controller = injector.getInstance(classOf[ControllerInterface])
       val tui = TUI(controller)
       val swing = new SwingGui(controller)
       tui.run()

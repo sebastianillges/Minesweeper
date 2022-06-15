@@ -1,18 +1,21 @@
 package de.htwg.se.minesweeper.model
 
+import com.google.inject.{Guice, Inject}
+import de.htwg.se.minesweeper.MinesweeperModule
 import de.htwg.se.minesweeper.util.{ReplaceStrategy, RevealStrategy}
 
 import scala.collection.mutable
 import scala.language.postfixOps
 import scala.util.Random as r
 
-case class Field(matrix: Matrix[Stone, Stone, Int]) extends FieldInterface:
+case class Field @Inject() (matrix: Matrix[Stone, Stone, Int]) extends FieldInterface:
   def this(rows: Int = 3, cols: Int = 3, filling: (Stone, Stone, Int) = (Stone.NotTracked, Stone.EmptyTracked, 0)) =
     this(new Matrix[Stone, Stone, Int](rows, cols, filling))
 
   val cols: Int = matrix.colNum
   val rows: Int = matrix.rowNum
   val eol: String = sys.props("line.separator")
+  val injector = Guice.createInjector(new MinesweeperModule)
 
   def firstBar(cellWidth: Int = 3, row: Int = rows): String =
     if (cellWidth % 2 == 0) {

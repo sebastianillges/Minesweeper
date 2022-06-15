@@ -1,14 +1,12 @@
 package de.htwg.se.minesweeper.controller
 
-import de.htwg.se.minesweeper.model.Coordinates
-import de.htwg.se.minesweeper.model.FieldInterface
-import de.htwg.se.minesweeper.model.Field
-import de.htwg.se.minesweeper.model.Stone
+import com.google.inject.{Guice, Inject}
+import de.htwg.se.minesweeper.MinesweeperModule
+import de.htwg.se.minesweeper.model.{Coordinates, Field, FieldInterface, Stone}
 import de.htwg.se.minesweeper.util.{Event, Observable, UndoManager}
 
-case class Controller(var field: FieldInterface) extends ControllerInterface with Observable:
+case class Controller @Inject() (var field: FieldInterface) extends ControllerInterface with Observable:
   val undoManager = new UndoManager[FieldInterface]
-  field = new Field(field.rows, field.cols)
 
   def doAndPublish(doThis: Coordinates => FieldInterface, coordinates: Coordinates): Unit =
     field = doThis(coordinates)
