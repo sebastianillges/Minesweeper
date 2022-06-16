@@ -1,8 +1,5 @@
 package de.htwg.se.minesweeper.model
 
-import com.google.inject.{Guice, Inject, Provides, Singleton}
-import de.htwg.se.minesweeper.MinesweeperModule
-
 case class Matrix[S, T, U](rows: Vector[Vector[(S, T, U)]]):
   def this(sizeRow: Int, sizeCol: Int, filling: (S, T, U)) =
     this(Vector.tabulate[(S, T, U)](sizeRow, sizeCol)((row, col) => filling))

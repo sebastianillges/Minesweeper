@@ -21,8 +21,8 @@ import scala.util.{Failure, Success, Try}
           " if you want to place a Flag in this Field write a f behind the cooridnates"
       )
       println("\n Press q to exit, u to undo and r to redo your move")
-      val injector = Guice.createInjector(new MinesweeperModule)
-      val createField = DifficultyFactory(difficulty.toString)
+	  val createField = DifficultyFactory(difficulty.toString)
+      val injector = Guice.createInjector(new MinesweeperModuleHard)
       val controller = injector.getInstance(classOf[ControllerInterface])
       val tui = TUI(controller)
       val swing = new SwingGui(controller)
