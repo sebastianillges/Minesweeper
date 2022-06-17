@@ -2,8 +2,9 @@ package de.htwg.se.minesweeper.controller
 
 import de.htwg.se.minesweeper.model.{Coordinates, Field, FieldInterface, Stone}
 import de.htwg.se.minesweeper.util.{Event, Observable, UndoManager}
+import com.google.inject.{Guice, Inject}
 
-case class Controller(var field: FieldInterface) extends ControllerInterface with Observable:
+case class Controller @Inject() (var field: FieldInterface) extends ControllerInterface with Observable:
   val undoManager = new UndoManager[FieldInterface]
 
   def doAndPublish(doThis: Coordinates => FieldInterface, coordinates: Coordinates): Unit =
