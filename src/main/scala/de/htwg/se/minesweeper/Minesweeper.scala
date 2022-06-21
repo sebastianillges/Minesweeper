@@ -3,12 +3,14 @@ import com.google.inject.Guice
 import de.htwg.se.minesweeper.aview.{SwingGui, TUI}
 import de.htwg.se.minesweeper.controller.ControllerInterface
 import de.htwg.se.minesweeper.model.*
+import de.htwg.se.minesweeper.model.fileIoXmlImpl.FileIOXml
 import de.htwg.se.minesweeper.util.{Difficulty, DifficultyFactory}
 
 import scala.io.StdIn.readLine
 import scala.util.{Failure, Success, Try}
 
 @main def main(): Unit =
+
   println("Minesweeper matchfield:")
   println("Insert 1 for easy, 2 for medium or 3 for hard: \n")
 

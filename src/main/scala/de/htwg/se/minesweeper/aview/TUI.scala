@@ -27,6 +27,8 @@ class TUI(controller: ControllerInterface) extends Observer:
           case "q" => System.exit(0)
           case "u" => controller.doAndPublish(controller.undo)
           case "r" => controller.doAndPublish(controller.redo)
+          case "s" => controller.doAndPublish(controller.save)
+          case "l" => controller.doAndPublish(controller.load)
           case _   => println("Ungültige eingabe")
       case 2 =>
         parseInput(input) match

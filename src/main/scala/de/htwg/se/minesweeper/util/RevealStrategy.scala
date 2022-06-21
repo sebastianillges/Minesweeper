@@ -10,7 +10,7 @@ object RevealStrategy:
 
   private def reveal(x: Int, y: Int, field: Field): Field =
     field.copy(
-      field.matrix.replaceCell(x, y, (field.getCell(x, y)._2, field.getCell(x, y)._1, field.matrix.row(x)(y)._3))
+      field.matrix.replaceCell(x, y, (field.getCell(x, y)._2, field.getCell(x, y)._1, field.getCell(x, y)._3))
     )
 
   private def strategy1(x: Int, y: Int, field: Field): Field =

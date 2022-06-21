@@ -6,7 +6,7 @@ import scala.collection.mutable
 import scala.language.postfixOps
 import scala.util.Random as r
 
-case class Field (matrix: Matrix[Stone, Stone, Int]) extends FieldInterface:
+case class Field(matrix: Matrix[Stone, Stone, Int]) extends FieldInterface:
   def this(rows: Int = 3, cols: Int = 3, filling: (Stone, Stone, Int) = (Stone.NotTracked, Stone.EmptyTracked, 0)) =
     this(new Matrix[Stone, Stone, Int](rows, cols, filling))
 
@@ -74,6 +74,10 @@ case class Field (matrix: Matrix[Stone, Stone, Int]) extends FieldInterface:
   override def toString: String = matchfield()
 
   def getCell(x: Int, y: Int): (Stone, Stone, Int) = matrix.cell(x, y)
+
+  def setCell(x: Int, y: Int, cell: (Stone, Stone, Int)): Field =
+    var fieldd = copy(matrix.replaceCell(x, y, (cell._1, cell._2, cell._3)))
+    fieldd
 
   def setBombs(bombNumber: Int): Field =
     setBombsR(bombNumber, this)
@@ -152,3 +156,17 @@ case class Field (matrix: Matrix[Stone, Stone, Int]) extends FieldInterface:
     res
 
   def matrixx(): Matrix[Stone, Stone, Int] = this.matrix
+
+  def toStone(string: String): Stone =
+    if (string.equals(Stone.Bomb.toString)) then Stone.Bomb
+    else if (string.equals(Stone.EmptyTracked.toString)) then Stone.EmptyTracked
+    else if (string.equals(Stone.NotTracked.toString)) then Stone.NotTracked
+    else if (string.equals(Stone.Flag.toString)) then Stone.Flag
+    else if (string.equals(Stone.One.toString)) then Stone.One
+    else if (string.equals(Stone.Two.toString)) then Stone.Two
+    else if (string.equals(Stone.Three.toString)) then Stone.Three
+    else if (string.equals(Stone.Four.toString)) then Stone.Four
+    else if (string.equals(Stone.Five.toString)) then Stone.Five
+    else if (string.equals(Stone.Six.toString)) then Stone.Six
+    else if (string.equals(Stone.Seven.toString)) then Stone.Seven
+    else Stone.Eight

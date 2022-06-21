@@ -9,6 +9,7 @@ trait FieldInterface:
   def cells(row: Int, cellWidth: Int): String
   def matchfield(cellWidth: Int): String
   def getCell(x: Int, y: Int): (Stone, Stone, Int)
+  def setCell(x: Int, y: Int, cell: (Stone, Stone, Int)): FieldInterface
   def setBombs(bombNumber: Int): FieldInterface
   def revealValue(x: Int, y: Int): FieldInterface
   def setFlag(x: Int, y: Int): FieldInterface
@@ -18,3 +19,4 @@ trait FieldInterface:
   def putValues(): FieldInterface
   def showValues(): FieldInterface
   def matrix: Matrix[Stone, Stone, Int]
+  def toStone(string: String): Stone

@@ -1,11 +1,15 @@
 package de.htwg.se.minesweeper.controller
 
-import de.htwg.se.minesweeper.model.{Coordinates, Field, FieldInterface, Stone}
+import de.htwg.se.minesweeper.model.{Coordinates, Field, FieldInterface, FileIOInterface, Stone}
 import de.htwg.se.minesweeper.util.{Event, Observable, UndoManager}
 import com.google.inject.{Guice, Inject}
+import de.htwg.se.minesweeper.MinesweeperXML
+import de.htwg.se.minesweeper.model.fileIoXmlImpl.FileIOXml
 
 case class Controller @Inject() (var field: FieldInterface) extends ControllerInterface with Observable:
   val undoManager = new UndoManager[FieldInterface]
+  val file = Guice.createInjector(new MinesweeperXML)
+  val fileIO = file.getInstance(classOf[FileIOInterface])
 
   def doAndPublish(doThis: Coordinates => FieldInterface, coordinates: Coordinates): Unit =
     field = doThis(coordinates)
@@ -41,5 +45,13 @@ case class Controller @Inject() (var field: FieldInterface) extends ControllerIn
 
   def setFlag(coordinates: Coordinates): FieldInterface =
     undoManager.doFlag(field, DoCommand(coordinates))
+
+  def save: FieldInterface =
+    fileIO.save(field)
+    field
+
+  def load: FieldInterface =
+    field = fileIO.load
+    field
 
   override def toString: String = field.toString

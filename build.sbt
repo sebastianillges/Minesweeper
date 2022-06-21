@@ -11,6 +11,7 @@ lazy val root = project
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.12" % "test",
     libraryDependencies += "org.scalafx" %% "scalafx" % "16.0.0-R24",
     libraryDependencies += "com.google.inject" % "guice" % "5.1.0",
+    libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "2.1.0",
     libraryDependencies ++= {
       // Determine OS version of JavaFX binaries
       lazy val osName = System.getProperty("os.name") match {

@@ -15,3 +15,5 @@ trait ControllerInterface extends Observable:
   def setBombs(bombAmount: Int): FieldInterface
   def setFlag(coordinates: Coordinates): FieldInterface
   def field: FieldInterface
+  def save: FieldInterface
+  def load: FieldInterface
