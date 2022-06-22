@@ -1,13 +1,13 @@
 <field rowSize="8">
     <cell row="0" col="0">
+        <first>□</first>
+        <second>■</second>
+        <third>0</third>
+    </cell>
+    <cell row="0" col="1">
         <first>1</first>
         <second>■</second>
         <third>1</third>
-    </cell>
-    <cell row="0" col="1">
-        <first>■</first>
-        <second>✴</second>
-        <third>2</third>
     </cell>
     <cell row="0" col="2">
         <first>■</first>
@@ -21,33 +21,33 @@
     </cell>
     <cell row="0" col="4">
         <first>■</first>
-        <second>1</second>
-        <third>1</third>
+        <second>2</second>
+        <third>2</third>
     </cell>
     <cell row="0" col="5">
-        <first>1</first>
-        <second>■</second>
+        <first>■</first>
+        <second>✴</second>
         <third>1</third>
     </cell>
     <cell row="0" col="6">
-        <first>□</first>
-        <second>■</second>
-        <third>0</third>
-    </cell>
-    <cell row="0" col="7">
-        <first>□</first>
-        <second>■</second>
-        <third>0</third>
-    </cell>
-    <cell row="1" col="0">
         <first>■</first>
         <second>2</second>
         <third>2</third>
     </cell>
-    <cell row="1" col="1">
+    <cell row="0" col="7">
         <first>■</first>
-        <second>3</second>
-        <third>3</third>
+        <second>1</second>
+        <third>1</third>
+    </cell>
+    <cell row="1" col="0">
+        <first>1</first>
+        <second>■</second>
+        <third>1</third>
+    </cell>
+    <cell row="1" col="1">
+        <first>2</first>
+        <second>■</second>
+        <third>2</third>
     </cell>
     <cell row="1" col="2">
         <first>■</first>
@@ -56,28 +56,28 @@
     </cell>
     <cell row="1" col="3">
         <first>■</first>
-        <second>2</second>
+        <second>✴</second>
         <third>2</third>
     </cell>
     <cell row="1" col="4">
         <first>■</first>
-        <second>✴</second>
-        <third>1</third>
+        <second>3</second>
+        <third>3</third>
     </cell>
     <cell row="1" col="5">
-        <first>1</first>
-        <second>■</second>
-        <third>1</third>
+        <first>■</first>
+        <second>2</second>
+        <third>2</third>
     </cell>
     <cell row="1" col="6">
-        <first>□</first>
-        <second>■</second>
-        <third>0</third>
+        <first>■</first>
+        <second>3</second>
+        <third>3</third>
     </cell>
     <cell row="1" col="7">
-        <first>□</first>
-        <second>■</second>
-        <third>0</third>
+        <first>■</first>
+        <second>✴</second>
+        <third>1</third>
     </cell>
     <cell row="2" col="0">
         <first>■</first>
@@ -85,63 +85,63 @@
         <third>1</third>
     </cell>
     <cell row="2" col="1">
-        <first>■</first>
-        <second>2</second>
-        <third>2</third>
-    </cell>
-    <cell row="2" col="2">
-        <first>1</first>
-        <second>■</second>
-        <third>1</third>
-    </cell>
-    <cell row="2" col="3">
-        <first>■</first>
-        <second>2</second>
-        <third>2</third>
-    </cell>
-    <cell row="2" col="4">
-        <first>■</first>
-        <second>1</second>
-        <third>1</third>
-    </cell>
-    <cell row="2" col="5">
-        <first>1</first>
-        <second>■</second>
-        <third>1</third>
-    </cell>
-    <cell row="2" col="6">
-        <first>1</first>
-        <second>■</second>
-        <third>1</third>
-    </cell>
-    <cell row="2" col="7">
-        <first>1</first>
-        <second>■</second>
-        <third>1</third>
-    </cell>
-    <cell row="3" col="0">
-        <first>■</first>
-        <second>2</second>
-        <third>2</third>
-    </cell>
-    <cell row="3" col="1">
-        <first>■</first>
-        <second>3</second>
-        <third>3</third>
-    </cell>
-    <cell row="3" col="2">
-        <first>■</first>
-        <second>1</second>
-        <third>1</third>
-    </cell>
-    <cell row="3" col="3">
         <first>2</first>
         <second>■</second>
         <third>2</third>
     </cell>
-    <cell row="3" col="4">
+    <cell row="2" col="2">
+        <first>2</first>
+        <second>■</second>
+        <third>2</third>
+    </cell>
+    <cell row="2" col="3">
+        <first>2</first>
+        <second>■</second>
+        <third>2</third>
+    </cell>
+    <cell row="2" col="4">
+        <first>2</first>
+        <second>■</second>
+        <third>2</third>
+    </cell>
+    <cell row="2" col="5">
+        <first>■</first>
+        <second>✴</second>
+        <third>1</third>
+    </cell>
+    <cell row="2" col="6">
+        <first>■</first>
+        <second>3</second>
+        <third>3</third>
+    </cell>
+    <cell row="2" col="7">
+        <first>■</first>
+        <second>2</second>
+        <third>2</third>
+    </cell>
+    <cell row="3" col="0">
         <first>■</first>
         <second>1</second>
+        <third>1</third>
+    </cell>
+    <cell row="3" col="1">
+        <first>1</first>
+        <second>■</second>
+        <third>1</third>
+    </cell>
+    <cell row="3" col="2">
+        <first>□</first>
+        <second>■</second>
+        <third>0</third>
+    </cell>
+    <cell row="3" col="3">
+        <first>□</first>
+        <second>■</second>
+        <third>0</third>
+    </cell>
+    <cell row="3" col="4">
+        <first>1</first>
+        <second>■</second>
         <third>1</third>
     </cell>
     <cell row="3" col="5">
@@ -151,8 +151,8 @@
     </cell>
     <cell row="3" col="6">
         <first>■</first>
-        <second>1</second>
-        <third>1</third>
+        <second>2</second>
+        <third>2</third>
     </cell>
     <cell row="3" col="7">
         <first>■</first>
@@ -161,27 +161,27 @@
     </cell>
     <cell row="4" col="0">
         <first>■</first>
-        <second>✴</second>
-        <third>1</third>
+        <second>□</second>
+        <third>0</third>
     </cell>
     <cell row="4" col="1">
-        <first>■</first>
-        <second>2</second>
-        <third>2</third>
+        <first>1</first>
+        <second>■</second>
+        <third>1</third>
     </cell>
     <cell row="4" col="2">
-        <first>■</first>
-        <second>✴</second>
+        <first>1</first>
+        <second>■</second>
         <third>1</third>
     </cell>
     <cell row="4" col="3">
-        <first>■</first>
-        <second>2</second>
+        <first>2</first>
+        <second>■</second>
         <third>2</third>
     </cell>
     <cell row="4" col="4">
-        <first>■</first>
-        <second>✴</second>
+        <first>1</first>
+        <second>■</second>
         <third>1</third>
     </cell>
     <cell row="4" col="5">
@@ -191,27 +191,27 @@
     </cell>
     <cell row="4" col="6">
         <first>■</first>
-        <second>1</second>
-        <third>1</third>
+        <second>2</second>
+        <third>2</third>
     </cell>
     <cell row="4" col="7">
-        <first>■</first>
-        <second>1</second>
-        <third>1</third>
-    </cell>
-    <cell row="5" col="0">
-        <first>■</first>
-        <second>1</second>
-        <third>1</third>
-    </cell>
-    <cell row="5" col="1">
         <first>■</first>
         <second>2</second>
         <third>2</third>
     </cell>
-    <cell row="5" col="2">
+    <cell row="5" col="0">
+        <first>■</first>
+        <second>□</second>
+        <third>0</third>
+    </cell>
+    <cell row="5" col="1">
         <first>■</first>
         <second>1</second>
+        <third>1</third>
+    </cell>
+    <cell row="5" col="2">
+        <first>■</first>
+        <second>✴</second>
         <third>1</third>
     </cell>
     <cell row="5" col="3">
@@ -221,13 +221,13 @@
     </cell>
     <cell row="5" col="4">
         <first>■</first>
-        <second>2</second>
-        <third>2</third>
+        <second>✴</second>
+        <third>1</third>
     </cell>
     <cell row="5" col="5">
         <first>■</first>
-        <second>2</second>
-        <third>2</third>
+        <second>1</second>
+        <third>1</third>
     </cell>
     <cell row="5" col="6">
         <first>■</first>
@@ -236,8 +236,8 @@
     </cell>
     <cell row="5" col="7">
         <first>■</first>
-        <second>□</second>
-        <third>0</third>
+        <second>✴</second>
+        <third>1</third>
     </cell>
     <cell row="6" col="0">
         <first>■</first>
@@ -246,18 +246,18 @@
     </cell>
     <cell row="6" col="1">
         <first>■</first>
-        <second>□</second>
-        <third>0</third>
+        <second>1</second>
+        <third>1</third>
     </cell>
     <cell row="6" col="2">
         <first>■</first>
-        <second>□</second>
-        <third>0</third>
+        <second>1</second>
+        <third>1</third>
     </cell>
     <cell row="6" col="3">
         <first>■</first>
-        <second>□</second>
-        <third>0</third>
+        <second>2</second>
+        <third>2</third>
     </cell>
     <cell row="6" col="4">
         <first>■</first>
@@ -266,13 +266,13 @@
     </cell>
     <cell row="6" col="5">
         <first>■</first>
-        <second>✴</second>
+        <second>1</second>
         <third>1</third>
     </cell>
     <cell row="6" col="6">
         <first>■</first>
-        <second>2</second>
-        <third>2</third>
+        <second>1</second>
+        <third>1</third>
     </cell>
     <cell row="6" col="7">
         <first>■</first>
@@ -301,22 +301,22 @@
     </cell>
     <cell row="7" col="4">
         <first>■</first>
-        <second>1</second>
-        <third>1</third>
+        <second>□</second>
+        <third>0</third>
     </cell>
     <cell row="7" col="5">
         <first>■</first>
-        <second>1</second>
-        <third>1</third>
+        <second>□</second>
+        <third>0</third>
     </cell>
     <cell row="7" col="6">
         <first>■</first>
-        <second>2</second>
-        <third>2</third>
+        <second>□</second>
+        <third>0</third>
     </cell>
     <cell row="7" col="7">
         <first>■</first>
-        <second>✴</second>
-        <third>1</third>
+        <second>□</second>
+        <third>0</third>
     </cell>
 </field>
