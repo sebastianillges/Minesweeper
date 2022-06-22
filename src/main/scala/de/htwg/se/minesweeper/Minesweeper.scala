@@ -3,7 +3,6 @@ import com.google.inject.Guice
 import de.htwg.se.minesweeper.aview.{SwingGui, TUI}
 import de.htwg.se.minesweeper.controller.ControllerInterface
 import de.htwg.se.minesweeper.model.*
-import de.htwg.se.minesweeper.model.fileIoXmlImpl.FileIOXml
 import de.htwg.se.minesweeper.util.{Difficulty, DifficultyFactory}
 
 import scala.io.StdIn.readLine

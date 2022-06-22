@@ -2,6 +2,7 @@ package de.htwg.se.minesweeper
 
 import com.google.inject.AbstractModule
 import de.htwg.se.minesweeper.controller.{Controller, ControllerInterface}
+import de.htwg.se.minesweeper.model.fileIoJsonImpl.FileIOJson
 import de.htwg.se.minesweeper.model.fileIoXmlImpl.FileIOXml
 import de.htwg.se.minesweeper.model.{Field, FieldInterface, FileIOInterface, Matrix}
 
@@ -26,5 +27,11 @@ class MinesweeperModuleHard extends AbstractModule {
 class MinesweeperXML extends AbstractModule {
   override def configure(): Unit = {
     bind(classOf[FileIOInterface]).toInstance(new FileIOXml())
+  }
+}
+
+class MinesweeperJson extends AbstractModule {
+  override def configure(): Unit = {
+    bind(classOf[FileIOInterface]).toInstance(new FileIOJson())
   }
 }

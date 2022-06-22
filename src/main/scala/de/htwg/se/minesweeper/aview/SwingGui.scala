@@ -15,6 +15,7 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
   title = "Minesweeper"
   preferredSize = new Dimension(600, 600)
   resizable = false
+  peer.setLocationRelativeTo(null)
   menuBar = new MenuBar {
     contents += new Menu("Edit") {
       contents += new MenuItem(Action("Exit") {
