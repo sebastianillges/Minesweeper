@@ -5,22 +5,23 @@ import de.htwg.se.minesweeper.controller.{Controller, ControllerInterface}
 import de.htwg.se.minesweeper.model.fileIoJsonImpl.FileIOJson
 import de.htwg.se.minesweeper.model.fileIoXmlImpl.FileIOXml
 import de.htwg.se.minesweeper.model.{Field, FieldInterface, FileIOInterface, Matrix}
+import de.htwg.se.minesweeper.util.DifficultyFactory
 
 class MinesweeperModuleEasy extends AbstractModule {
   override def configure(): Unit = {
-    bind(classOf[ControllerInterface]).toInstance(new Controller(new Field(8, 8)))
+    bind(classOf[ControllerInterface]).toInstance(new Controller(DifficultyFactory("1").run))
   }
 }
 
 class MinesweeperModuleMedium extends AbstractModule {
   override def configure(): Unit = {
-    bind(classOf[ControllerInterface]).toInstance(new Controller(new Field(16, 16)))
+    bind(classOf[ControllerInterface]).toInstance(new Controller(DifficultyFactory("2").run))
   }
 }
 
 class MinesweeperModuleHard extends AbstractModule {
   override def configure(): Unit = {
-    bind(classOf[ControllerInterface]).toInstance(new Controller(new Field(32, 16)))
+    bind(classOf[ControllerInterface]).toInstance(new Controller(DifficultyFactory("3").run))
   }
 }
 
