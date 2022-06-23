@@ -13,19 +13,13 @@ import scala.util.{Failure, Success, Try}
   println("Minesweeper matchfield:")
   println("Insert 1 for easy, 2 for medium or 3 for hard: \n")
 
-  val input = Try(readLine.toInt)
-  input match {
-    case Success(v) =>
-      val difficulty = v
-      println(
-        "\n To reveal a Field Cell type in the cooridinates as for example: 00, \n" +
-          " if you want to place a Flag in this Field write a f behind the cooridnates"
-      )
-      println("\n Press q to exit, u to undo and r to redo your move")
-      val injector = Guice.createInjector(new MinesweeperModuleEasy)
-      val controller = injector.getInstance(classOf[ControllerInterface])
-      val tui = TUI(controller)
-      val swing = new SwingGui(controller)
-      tui.run()
-    case Failure(e) => println("Ungültige Eingabe")
-  }
+  println(
+    "\n To reveal a Field Cell type in the cooridinates as for example: 00, \n" +
+      " if you want to place a Flag in this Field write a f behind the cooridnates"
+  )
+  println("\n Press q to exit, u to undo and r to redo your move")
+  val injector = Guice.createInjector(new MinesweeperModuleEasy)
+  val controller = injector.getInstance(classOf[ControllerInterface])
+  val tui = TUI(controller)
+  val swing = new SwingGui(controller)
+  tui.run()

@@ -56,12 +56,6 @@ case class Controller @Inject() (var field: FieldInterface) extends ControllerIn
     notifyObservers(Event.Move)
     field
 
-  def detectFlags(): Map[Coordinates, Boolean] =
-    field.detectFlags()
-
-  def detectBombs(): Map[Coordinates, Boolean] =
-    field.detectBombs()
-
   def setFlag(coordinates: Coordinates): FieldInterface =
     undoManager.doFlag(field, DoCommand(coordinates))
 
@@ -74,7 +68,7 @@ case class Controller @Inject() (var field: FieldInterface) extends ControllerIn
     field
 
   def flagsLeft(): Int =
-    val help = detectBombs().size - detectFlags().size
+    val help = field.detectBombs().size - field.detectFlags().size
     help
 
   override def toString: String = field.toString
