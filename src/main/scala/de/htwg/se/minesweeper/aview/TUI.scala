@@ -17,7 +17,9 @@ class TUI(controller: ControllerInterface) extends Observer:
   override def update(e: Event): Unit =
     e match
       case Event.Quit => continue = false
-      case Event.Move => println(controller.toString)
+      case Event.Move =>
+        println("Flaggen verfügbar:" + controller.flagsLeft());
+        println(controller.toString)
 
   def getInputAndPrintLoop: Any =
     val input = readLine
@@ -29,6 +31,9 @@ class TUI(controller: ControllerInterface) extends Observer:
           case "r" => controller.doAndPublish(controller.redo)
           case "s" => controller.doAndPublish(controller.save)
           case "l" => controller.doAndPublish(controller.load)
+          case "1" => controller.doAndPublish(controller.createNewField("1"))
+          case "2" => controller.doAndPublish(controller.createNewField("2"))
+          case "3" => controller.doAndPublish(controller.createNewField("3"))
           case _   => println("Ungültige eingabe")
       case 2 =>
         parseInput(input) match
@@ -41,11 +46,11 @@ class TUI(controller: ControllerInterface) extends Observer:
           case "f" =>
             parseInput(input) match
               case None       => System.exit(0)
-              case Some(move) => controller.doAndPublish(controller.setFlag, move)
+              case Some(move) => controller.doAndPublish(controller.setFlag, move);
           case "F" =>
             parseInput(input) match
               case None       => System.exit(0)
-              case Some(move) => controller.doAndPublish(controller.setFlag, move)
+              case Some(move) => controller.doAndPublish(controller.setFlag, move);
           case _ => println("Ungültige eingabe")
       case _ => println("Ungültige eingabe")
 

@@ -17,3 +17,7 @@ trait ControllerInterface extends Observable:
   def field: FieldInterface
   def save: FieldInterface
   def load: FieldInterface
+  def createNewField(string: String): FieldInterface
+  def detectFlags(): Map[Coordinates, Boolean]
+  def detectBombs(): Map[Coordinates, Boolean]
+  def flagsLeft(): Int

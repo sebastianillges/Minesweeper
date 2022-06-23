@@ -2,10 +2,9 @@ package de.htwg.se.minesweeper.aview
 
 import de.htwg.se.minesweeper.controller.ControllerInterface
 import de.htwg.se.minesweeper.model.{Coordinates, Field, Stone}
-import de.htwg.se.minesweeper.util.Observer
-import de.htwg.se.minesweeper.util.Event
+import de.htwg.se.minesweeper.util.{Event, Observer}
 
-import scala.swing.event.MouseEvent
+import javax.swing.ImageIcon
 import scala.swing.*
 import scala.swing.event.*
 
@@ -34,6 +33,17 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
         controller.doAndPublish(controller.load)
       })
     }
+    contents += new Menu("Difficulty") {
+      contents += new MenuItem(Action("Easy") {
+        controller.doAndPublish(controller.createNewField("1"))
+      })
+      contents += new MenuItem(Action("Medium") {
+        controller.doAndPublish(controller.createNewField("2"))
+      })
+      contents += new MenuItem(Action("Hard") {
+        controller.doAndPublish(controller.createNewField("3"))
+      })
+    }
   }
 
   pack()
@@ -44,7 +54,7 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
     case Event.Quit => this.dispose
     case Event.Move =>
       contents = new BorderPanel {
-        add(new Label("Welcome to Minesweeper"), BorderPanel.Position.North)
+        add(new Label("Flags left: " + controller.flagsLeft()), BorderPanel.Position.North)
         add(new CellPanel(controller.field.rows, controller.field.cols), BorderPanel.Position.Center)
       }
 
@@ -58,13 +68,10 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
           )
       )
 
-    def button(stone: String) = new Button(stone)
-
   class CellButton(x: Int, y: Int, stone: String) extends Button(stone):
     listenTo(mouse.clicks)
     reactions += { case evt @ MouseClicked(src, pt, mod, clicks, props) =>
       evt.peer.getButton match
         case 1 => controller.doAndPublish(controller.revealValue, new Coordinates(x, y))
         case 3 => controller.doAndPublish(controller.setFlag, new Coordinates(x, y))
-
     }
