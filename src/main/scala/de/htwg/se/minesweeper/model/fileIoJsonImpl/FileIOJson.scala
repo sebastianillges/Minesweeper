@@ -29,7 +29,6 @@ class FileIOJson extends FileIOInterface:
       val second = field.toStone((json \\ "second")(index).as[String])
       val third = (json \\ "third")(index).as[Int]
       field = field.setCell(row, col, (first, second, third))
-    println(field.getCell(0, 0).toString())
     field
 
   override def save(field: FieldInterface): Unit =
