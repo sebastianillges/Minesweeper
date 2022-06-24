@@ -7,7 +7,6 @@
 
 <p align="center">
   Compile with `sbt compile`, run with `sbt run`
-  Run jacoco with `sbt jacoco` and generate a report with `sbt jacocoReport`
 </p>
 
 # The Game
