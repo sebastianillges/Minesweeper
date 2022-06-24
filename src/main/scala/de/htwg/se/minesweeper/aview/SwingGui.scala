@@ -57,17 +57,17 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
 
   def update(e: Event): Unit =
     if (controller.field.rows == 32)
-      preferredSize = new Dimension(360, 720)
+      preferredSize = new Dimension(440, 880)
     else
       preferredSize = new Dimension(600, 600)
     e match
-    case Event.Quit => this.dispose
-    case Event.Move =>
-      contents = new BorderPanel {
-        add(new Label("Flags left: " + controller.flagsLeft()), BorderPanel.Position.North)
-        add(new CellPanel(controller.field.rows, controller.field.cols), BorderPanel.Position.Center)
+      case Event.Quit => this.dispose
+      case Event.Move =>
+        contents = new BorderPanel {
+          add(new Label("Flags left: " + controller.flagsLeft()), BorderPanel.Position.North)
+          add(new CellPanel(controller.field.rows, controller.field.cols), BorderPanel.Position.Center)
 
-      }
+        }
 
   class CellPanel(x: Int, y: Int) extends GridPanel(x, y):
     var i = 0
@@ -83,132 +83,132 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
   class CellButton(x: Int, y: Int, var stone: String) extends Button(stone):
     if (this.stone.equals("✴")) then
       this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("iconsEasy/bomb.png"))
+      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/bomb.png"))
       controller.field.rows match {
-        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/bomb.png"))
-        case 16 => buttonIcon = ImageIO.read(new File("iconsMedium/bomb.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("iconsHard/bomb.png")); preferredSize.setSize(600, 1200);
+        case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/bomb.png"))
+        case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/bomb.png"))
+        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/bomb.png")); preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
       this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("\u2691")) then
       this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("iconsEasy/flagged.png"))
+      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/flagged.png"))
       controller.field.rows match {
-        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/flagged.png"))
-        case 16 => buttonIcon = ImageIO.read(new File("iconsMedium/flagged.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("iconsHard/flagged.png")); preferredSize.setSize(600, 1200);
+        case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/flagged.png"))
+        case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/flagged.png"))
+        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/flagged.png")); preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
       this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("\u25A0")) then
       this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("iconsEasy/facingDown.png"))
+      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/facingDown.png"))
       controller.field.rows match {
-        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/facingDown.png"))
-        case 16 => buttonIcon = ImageIO.read(new File("iconsMedium/facingDown.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("iconsHard/facingDown.png")); preferredSize.setSize(600, 1200);
+        case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/facingDown.png"))
+        case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/facingDown.png"))
+        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/facingDown.png")); preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
       this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("\u25A1")) then
       this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("iconsEasy/0.png"))
+      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/0.png"))
       controller.field.rows match {
-        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/0.png"))
-        case 16 => buttonIcon = ImageIO.read(new File("iconsMedium/0.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("iconsHard/0.png")); preferredSize.setSize(600, 1200);
+        case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/0.png"))
+        case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/0.png"))
+        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/0.png")); preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
       this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("1")) then
       this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("iconsEasy/1.png"))
+      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/1.png"))
       controller.field.rows match {
-        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/1.png"))
-        case 16 => buttonIcon = ImageIO.read(new File("iconsMedium/1.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("iconsHard/1.png")); preferredSize.setSize(600, 1200);
+        case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/1.png"))
+        case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/1.png"))
+        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/1.png")); preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
       this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("2")) then
       this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("iconsEasy/2.png"))
+      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/2.png"))
       controller.field.rows match {
-        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/2.png"))
-        case 16 => buttonIcon = ImageIO.read(new File("iconsMedium/2.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("iconsHard/2.png")); preferredSize.setSize(600, 1200);
+        case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/2.png"))
+        case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/2.png"))
+        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/2.png")); preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
       this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("3")) then
       this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("iconsEasy/3.png"))
+      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/3.png"))
       controller.field.rows match {
-        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/3.png"))
-        case 16 => buttonIcon = ImageIO.read(new File("iconsMedium/3.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("iconsHard/3.png")); preferredSize.setSize(600, 1200);
+        case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/3.png"))
+        case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/3.png"))
+        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/3.png")); preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
       this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("4")) then
       this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("iconsEasy/4.png"))
+      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/4.png"))
       controller.field.rows match {
-        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/4.png"))
-        case 16 => buttonIcon = ImageIO.read(new File("iconsMedium/4.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("iconsHard/4.png")); preferredSize.setSize(600, 1200);
+        case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/4.png"))
+        case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/4.png"))
+        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/4.png")); preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
       this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("5")) then
       this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("iconsEasy/5.png"))
+      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/5.png"))
       controller.field.rows match {
-        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/5.png"))
-        case 16 => buttonIcon = ImageIO.read(new File("iconsMedium/5.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("iconsHard/5.png")); preferredSize.setSize(600, 1200);
+        case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/5.png"))
+        case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/5.png"))
+        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/5.png")); preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
       this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("6")) then
       this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("iconsEasy/6.png"))
+      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/6.png"))
       controller.field.rows match {
-        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/6.png"))
-        case 16 => buttonIcon = ImageIO.read(new File("iconsMedium/6.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("iconsHard/6.png")); preferredSize.setSize(600, 1200);
+        case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/6.png"))
+        case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/6.png"))
+        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/6.png")); preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
       this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("7")) then
       this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("iconsEasy/7.png"))
+      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/7.png"))
       controller.field.rows match {
-        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/7.png"))
-        case 16 => buttonIcon = ImageIO.read(new File("iconsMedium/7.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("iconsHard/7.png")); preferredSize.setSize(600, 1200);
+        case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/7.png"))
+        case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/7.png"))
+        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/7.png")); preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
       this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("8")) then
       this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("iconsEasy/8.png"))
+      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/8.png"))
       controller.field.rows match {
-        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/8.png"))
-        case 16 => buttonIcon = ImageIO.read(new File("iconsMedium/8.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("iconsHard/8.png")); preferredSize.setSize(600, 1200);
+        case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/8.png"))
+        case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/8.png"))
+        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/8.png")); preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
