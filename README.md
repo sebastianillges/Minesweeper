@@ -12,4 +12,6 @@
 * If you think you know where a bomb must be, you should mark the square with a flag by right clicking it.
 
 # Pictures
-![alt text](src/main/resources/readmePictures/Minesweeper-showcase.png)<br/>
+<p align="center">
+  ![alt text](src/main/resources/readmePictures/Minesweeper-showcase.png)<br/>
+<\p>
