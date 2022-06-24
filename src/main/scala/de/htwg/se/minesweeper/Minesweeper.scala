@@ -8,13 +8,9 @@ import de.htwg.se.minesweeper.util.{Difficulty, DifficultyFactory}
 import scala.io.StdIn.readLine
 import scala.util.{Failure, Success, Try}
 
-trait Output {
-  def print(s: String): Unit = Console.println(s)
-}
-
 @main def main(): Unit =
 
-  def difficultyInfo = "Insert 1 for easy, 2 for medium or 3 for hard: \n"
+  println("Insert 1 for easy, 2 for medium or 3 for hard: \n")
 
   println(
     "\n To reveal a Field Cell type in the cooridinates as for example: 00, \n" +
