@@ -57,7 +57,7 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
 
   def update(e: Event): Unit =
     if (controller.field.rows == 32)
-      preferredSize = new Dimension(480, 960)
+      preferredSize = new Dimension(360, 720)
     else
       preferredSize = new Dimension(600, 600)
     e match
