@@ -57,17 +57,17 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
 
   def update(e: Event): Unit =
     if (controller.field.rows == 32)
-      preferredSize = new Dimension(360, 720)
+      preferredSize = new Dimension(440, 880)
     else
       preferredSize = new Dimension(600, 600)
     e match
-    case Event.Quit => this.dispose
-    case Event.Move =>
-      contents = new BorderPanel {
-        add(new Label("Flags left: " + controller.flagsLeft()), BorderPanel.Position.North)
-        add(new CellPanel(controller.field.rows, controller.field.cols), BorderPanel.Position.Center)
+      case Event.Quit => this.dispose
+      case Event.Move =>
+        contents = new BorderPanel {
+          add(new Label("Flags left: " + controller.flagsLeft()), BorderPanel.Position.North)
+          add(new CellPanel(controller.field.rows, controller.field.cols), BorderPanel.Position.Center)
 
-      }
+        }
 
   class CellPanel(x: Int, y: Int) extends GridPanel(x, y):
     var i = 0
