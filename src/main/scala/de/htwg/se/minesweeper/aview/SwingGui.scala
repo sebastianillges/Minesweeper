@@ -79,7 +79,7 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       this.peer.setText("")
       var buttonIcon: BufferedImage = ImageIO.read(new File("iconsEasy/bomb.png"))
       controller.field.rows match {
-        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/bomb.png"))
+        case 8  => buttonIcon = ImageIO.read(new File("iconsEasy/bomb(1).png"))
         case 16 => buttonIcon = ImageIO.read(new File("iconsMedium/bomb.png"))
         case 32 => buttonIcon = ImageIO.read(new File("iconsHard/bomb.png"))
       }
