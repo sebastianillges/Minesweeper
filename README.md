@@ -2,11 +2,8 @@
   <h1 align="center">Minesweeper</h3>
 </p>
 
-
-<p align="center">
   ![MAIN status](https://github.com/sebastianillges/Minesweeper/actions/workflows/scala.yml/badge.svg)
   [![codecov](https://codecov.io/gh/sebastianillges/Minesweeper/branch/main/graph/badge.svg?token=QH2Z0JDP9Y)](https://codecov.io/gh/sebastianillges/Minesweeper)
-</p>
 
 #The Game
 * You get a field of squares in which a specific amount of bombs are hidden in.
