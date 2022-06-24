@@ -6,7 +6,7 @@
   [![codecov](https://codecov.io/gh/sebastianillges/Minesweeper/branch/main/graph/badge.svg?token=QH2Z0JDP9Y)](https://codecov.io/gh/sebastianillges/Minesweeper)
 
 <p align="center">
-  Compile with 'sbt compile', run with 'sbt run'
+  Compile with ```sbt compile```, run with ```sbt run```
 </p>
 
 # The Game
