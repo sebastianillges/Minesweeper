@@ -10,7 +10,6 @@ import scala.util.{Failure, Success, Try}
 
 @main def main(): Unit =
 
-  println("Minesweeper matchfield:")
   println("Insert 1 for easy, 2 for medium or 3 for hard: \n")
 
   println(
