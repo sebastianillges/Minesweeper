@@ -154,6 +154,36 @@ class FieldSpec extends AnyWordSpec {
             else field.getCell(0, 0)._3 should be(1)
           }
         }
+        "setCell used" should {
+          var field = new Field(1, 2)
+          "Replace the Cell" in {
+            field = field.setCell(0, 0, (Stone.Flag, Stone.Bomb, 1))
+            field.getCell(0, 0)._1.toString should be(Stone.Flag.toString)
+          }
+        }
+        "matrixx used" should {
+          var field = new Field(1, 2)
+          "Return the matrix" in {
+            field.matrixx() should be(field.matrix)
+          }
+        }
+        "toStone used" should {
+          var field = new Field(1, 2)
+          "transform string into Stone" in {
+            field.toStone("1") should be(Stone.One)
+            field.toStone("2") should be(Stone.Two)
+            field.toStone("3") should be(Stone.Three)
+            field.toStone("4") should be(Stone.Four)
+            field.toStone("5") should be(Stone.Five)
+            field.toStone("6") should be(Stone.Six)
+            field.toStone("7") should be(Stone.Seven)
+            field.toStone("8") should be(Stone.Eight)
+            field.toStone("\u25A0") should be(Stone.NotTracked)
+            field.toStone("\u25A1") should be(Stone.EmptyTracked)
+            field.toStone("✴") should be(Stone.Bomb)
+            field.toStone("\u2691") should be(Stone.Flag)
+          }
+        }
       }
     }
   }
