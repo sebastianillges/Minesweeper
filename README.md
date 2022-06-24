@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">Minesweeper</h3>
+  <h1 align="center">Minesweeper</h1>
 </p>
 
   ![MAIN status](https://github.com/sebastianillges/Minesweeper/actions/workflows/scala.yml/badge.svg)
