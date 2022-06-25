@@ -30,6 +30,6 @@ lazy val root = project
       JacocoThresholds(),
       Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
       "utf-8"),
-    jacocoExcludes := Seq("de/htwg/se/minesweeper/aview.*")
+    jacocoExcludes := Seq("de/htwg/se/minesweeper/aview/*")
   )
   .enablePlugins(JacocoCoverallsPlugin)
