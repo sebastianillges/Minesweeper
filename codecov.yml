@@ -1,4 +1,4 @@
 codecov:
   disable_default_path_fixes: true
 ignore:
-  - "src/main/scala/de/htwg/se/minesweeper/aview"
+  - "main/scala/de/htwg/se/minesweeper/aview"
