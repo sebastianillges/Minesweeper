@@ -2,6 +2,10 @@ package de.htwg.se.minesweeper.controller
 
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
+import de.htwg.se.minesweeper.controller.controllerComponent.*
+import de.htwg.se.minesweeper.controller.controllerComponent.controllerBaseImpl.*
+import de.htwg.se.minesweeper.model.FieldComponent.*
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.*
 import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.{Coordinates, Field}
 
 class ControllerSpec extends AnyWordSpec {

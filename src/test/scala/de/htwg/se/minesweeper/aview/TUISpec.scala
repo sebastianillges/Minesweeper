@@ -2,8 +2,10 @@ package de.htwg.se.minesweeper.aview
 
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
-import de.htwg.se.minesweeper.controller.Controller
-import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.{Coordinates, Field}
+import de.htwg.se.minesweeper.controller.controllerComponent.*
+import de.htwg.se.minesweeper.controller.controllerComponent.controllerBaseImpl.*
+import de.htwg.se.minesweeper.model.FieldComponent.*
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.*
 
 class TUISpec extends AnyWordSpec {
   "The TUI" should {

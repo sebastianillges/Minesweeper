@@ -1,6 +1,7 @@
 package de.htwg.se.minesweeper.util
 
-import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.Field
+import de.htwg.se.minesweeper.model.FieldComponent.*
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.*
 import de.htwg.se.minesweeper.util.*
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
