@@ -2,3 +2,4 @@ codecov:
   disable_default_path_fixes: true
 ignore:
   - "de/htwg/se/minesweeper/aview"
+  - "target/scala-3.1.1/jacoco/report/de/htwg/se/minesweeper/aview"
