@@ -1,5 +1,6 @@
 package de.htwg.se.minesweeper.model
 
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.Field
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 

@@ -1,6 +1,6 @@
 package de.htwg.se.minesweeper.util
 
-import de.htwg.se.minesweeper.model.{Field, Matrix, Stone}
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.{Field, Matrix, Stone}
 
 trait Difficulty {
   def run: Field

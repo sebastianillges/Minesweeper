@@ -1,6 +1,7 @@
-package de.htwg.se.minesweeper.controller
+package de.htwg.se.minesweeper.controller.controllerComponent
 
-import de.htwg.se.minesweeper.model.{Coordinates, FieldInterface, Stone}
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.Coordinates
+import de.htwg.se.minesweeper.model.FieldComponent.*
 import de.htwg.se.minesweeper.util.Observable
 
 trait ControllerInterface extends Observable:

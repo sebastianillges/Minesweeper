@@ -1,6 +1,8 @@
-package de.htwg.se.minesweeper.model.fileIoJsonImpl
+package de.htwg.se.minesweeper.model.FileIOComponent.fileIoJsonImpl
 
-import de.htwg.se.minesweeper.model.{Field, FieldInterface, FileIOInterface}
+import de.htwg.se.minesweeper.model.FieldComponent.*
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.*
+import de.htwg.se.minesweeper.model.FileIOComponent.*
 import play.api.libs.json.*
 
 import java.io.*

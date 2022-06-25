@@ -1,4 +1,4 @@
-package de.htwg.se.minesweeper.model
+package de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl
 
 enum Stone(stringRepresentation: String):
   override def toString = stringRepresentation

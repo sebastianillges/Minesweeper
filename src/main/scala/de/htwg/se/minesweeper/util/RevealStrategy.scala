@@ -1,6 +1,6 @@
 package de.htwg.se.minesweeper.util
 
-import de.htwg.se.minesweeper.model.{Field, Stone}
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.{Field, Stone}
 
 object RevealStrategy:
   def strategy(x: Int, y: Int, field: Field): Field = if (field.getCell(x, y)._2.equals(Stone.Bomb)) then

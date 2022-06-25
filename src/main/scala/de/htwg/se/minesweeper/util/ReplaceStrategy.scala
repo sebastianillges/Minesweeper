@@ -1,6 +1,6 @@
 package de.htwg.se.minesweeper.util
 
-import de.htwg.se.minesweeper.model.*
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.{Field, Stone}
 
 object ReplaceStrategy:
   def strategy(stonePosition: Boolean, field: Field, x: Int, y: Int, stone: Stone) =

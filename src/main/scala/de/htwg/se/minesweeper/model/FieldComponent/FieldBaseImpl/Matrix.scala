@@ -1,4 +1,4 @@
-package de.htwg.se.minesweeper.model
+package de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl
 
 case class Matrix[S, T, U](rows: Vector[Vector[(S, T, U)]]):
   def this(sizeRow: Int, sizeCol: Int, filling: (S, T, U)) =

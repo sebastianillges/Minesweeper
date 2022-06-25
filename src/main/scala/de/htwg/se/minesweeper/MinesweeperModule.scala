@@ -1,10 +1,13 @@
 package de.htwg.se.minesweeper
 
 import com.google.inject.AbstractModule
-import de.htwg.se.minesweeper.controller.{Controller, ControllerInterface}
-import de.htwg.se.minesweeper.model.fileIoJsonImpl.FileIOJson
-import de.htwg.se.minesweeper.model.fileIoXmlImpl.FileIOXml
-import de.htwg.se.minesweeper.model.{Field, FieldInterface, FileIOInterface, Matrix}
+import de.htwg.se.minesweeper.controller.controllerComponent.*
+import de.htwg.se.minesweeper.controller.controllerComponent.controllerBaseImpl.*
+import de.htwg.se.minesweeper.model.FieldComponent.*
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.*
+import de.htwg.se.minesweeper.model.FileIOComponent.*
+import de.htwg.se.minesweeper.model.FileIOComponent.fileIoXmlImpl.*
+import de.htwg.se.minesweeper.model.FileIOComponent.fileIoJsonImpl.*
 import de.htwg.se.minesweeper.util.DifficultyFactory
 
 class MinesweeperModuleEasy extends AbstractModule {

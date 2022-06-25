@@ -1,5 +1,6 @@
-package de.htwg.se.minesweeper.model
+package de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl
 
+import de.htwg.se.minesweeper.model.FieldComponent.FieldInterface
 import de.htwg.se.minesweeper.util.{ReplaceStrategy, RevealStrategy}
 
 import scala.collection.mutable

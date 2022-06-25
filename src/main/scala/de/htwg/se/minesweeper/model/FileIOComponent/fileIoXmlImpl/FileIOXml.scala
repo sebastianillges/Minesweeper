@@ -1,7 +1,9 @@
-package de.htwg.se.minesweeper.model.fileIoXmlImpl
+package de.htwg.se.minesweeper.model.FileIOComponent.fileIoXmlImpl
 
 import com.google.inject.Guice
-import de.htwg.se.minesweeper.model.*
+import de.htwg.se.minesweeper.model.FieldComponent.*
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.*
+import de.htwg.se.minesweeper.model.FileIOComponent.*
 import de.htwg.se.minesweeper.util.ReplaceStrategy
 import de.htwg.se.minesweeper.{MinesweeperModuleEasy, MinesweeperModuleHard, MinesweeperModuleMedium}
 

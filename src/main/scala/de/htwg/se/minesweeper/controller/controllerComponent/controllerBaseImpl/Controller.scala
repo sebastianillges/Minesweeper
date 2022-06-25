@@ -1,8 +1,11 @@
-package de.htwg.se.minesweeper.controller
+package de.htwg.se.minesweeper.controller.controllerComponent.controllerBaseImpl
 
 import com.google.inject.{Guice, Inject}
-import de.htwg.se.minesweeper.model.fileIoXmlImpl.FileIOXml
-import de.htwg.se.minesweeper.model.*
+import de.htwg.se.minesweeper.controller.controllerComponent.*
+import de.htwg.se.minesweeper.controller.controllerComponent.controllerBaseImpl.*
+import de.htwg.se.minesweeper.model.FieldComponent.*
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.*
+import de.htwg.se.minesweeper.model.FileIOComponent.*
 import de.htwg.se.minesweeper.util.{DifficultyFactory, Event, Observable, UndoManager}
 import de.htwg.se.minesweeper.{MinesweeperJson, MinesweeperXML}
 

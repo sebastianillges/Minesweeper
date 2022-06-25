@@ -1,7 +1,7 @@
 package de.htwg.se.minesweeper.aview
 
-import de.htwg.se.minesweeper.controller.ControllerInterface
-import de.htwg.se.minesweeper.model.{Coordinates, Field, Stone}
+import de.htwg.se.minesweeper.controller.controllerComponent.ControllerInterface
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.{Coordinates, Field, Stone}
 import de.htwg.se.minesweeper.util.{Event, Observer}
 
 import java.awt.Color

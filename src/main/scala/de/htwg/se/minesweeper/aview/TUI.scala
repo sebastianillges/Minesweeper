@@ -1,7 +1,8 @@
 package de.htwg.se.minesweeper.aview
 
-import de.htwg.se.minesweeper.controller.{Controller, ControllerInterface}
-import de.htwg.se.minesweeper.model.{Coordinates, Field}
+import de.htwg.se.minesweeper.controller.controllerComponent.*
+import de.htwg.se.minesweeper.controller.controllerComponent.controllerBaseImpl.*
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.{Coordinates, Field}
 import de.htwg.se.minesweeper.util.{Event, Observer}
 
 import scala.io.StdIn.readLine

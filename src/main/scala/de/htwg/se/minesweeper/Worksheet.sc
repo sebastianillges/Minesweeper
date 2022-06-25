@@ -1,10 +1,11 @@
-import de.htwg.se.minesweeper.model.*
+
+import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.Field
 import de.htwg.se.minesweeper.util.RevealStrategy
 
 import java.io.{File, PrintWriter}
 import scala.xml.NodeSeq.{fromSeq, seqToNodeSeq}
 import scala.xml.PrettyPrinter
-import play.api.libs.json._
+import play.api.libs.json.*
 
 var field = new Field(3, 3)
 
