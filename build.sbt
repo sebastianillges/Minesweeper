@@ -29,13 +29,14 @@ lazy val root = project
     jacocoCoverallsBranch := sys.env.get("CI_BRANCH"),
     jacocoCoverallsPullRequest := sys.env.get("GITHUB_EVENT_NAME"),
     jacocoCoverallsRepoToken := sys.env.get("COVERALLS_REPO_TOKEN")
+
+    jacocoReportSettings := JacocoReportSettings(
+      "Jacoco Coverage Report",
+      None,
+      JacocoThresholds(),
+      Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
+      "utf-8"),
+    jacocoExcludes := Seq("aview*")
   )
   .enablePlugins(JacocoCoverallsPlugin)
 
-jacocoReportSettings := JacocoReportSettings(
-  "Jacoco Coverage Report",
-  None,
-  JacocoThresholds(),
-  Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
-  "utf-8"
-)
