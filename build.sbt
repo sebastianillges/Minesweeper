@@ -1,5 +1,3 @@
-import com.github.sbt.jacoco.JacocoKeys.JacocoReportSettings
-
 val scala3Version = "3.1.1"
 
 lazy val root = project
@@ -28,10 +26,10 @@ lazy val root = project
     },
 
     jacocoReportSettings := JacocoReportSettings(
-    "Jacoco Coverage Report",
-    None,
-    JacocoThresholds(),
-    Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
-    "utf-8"),
-    jacocoExcludes := Seq("aview*")
+      "Jacoco Coverage Report",
+      None,
+      JacocoThresholds(),
+      Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
+      "utf-8"),
+    jacocoExcludes := Seq("aview")
   )
