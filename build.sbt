@@ -9,7 +9,7 @@ lazy val root = project
     libraryDependencies += "org.scalameta" %% "munit" % "0.7.29" % Test,
     libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.12",
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.12" % "test",
-    libraryDependencies += "org.scalafx" %% "scalafx" % "16.0.0-R24",
+    libraryDependencies += ("org.scala-lang.modules" %% "scala-swing" % "3.0.0").cross(CrossVersion.for3Use2_13),
     libraryDependencies += "com.google.inject" % "guice" % "5.1.0",
     libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "2.1.0",
     libraryDependencies += ("com.typesafe.play" %% "play-json" % "2.10.0-RC5"),
@@ -24,20 +24,12 @@ lazy val root = project
       Seq("base", "controls", "fxml", "graphics", "media", "swing", "web")
         .map(m => "org.openjfx" % s"javafx-$m" % "16" classifier osName)
     },
-    libraryDependencies += ("org.scala-lang.modules" %% "scala-swing" % "3.0.0").cross(CrossVersion.for3Use2_13),
-    jacocoCoverallsServiceName := "github-actions",
-    jacocoCoverallsBranch := sys.env.get("CI_BRANCH"),
-    jacocoCoverallsPullRequest := sys.env.get("GITHUB_EVENT_NAME"),
-    jacocoCoverallsRepoToken := sys.env.get("COVERALLS_REPO_TOKEN")
 
+    jacocoReportSettings := JacocoReportSettings(
+      "Jacoco Coverage Report",
+      None,
+      JacocoThresholds(),
+      Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
+      "utf-8"),
+    jacocoExcludes := Seq("aview*")
   )
-  .enablePlugins(JacocoCoverallsPlugin)
-
-jacocoReportSettings := JacocoReportSettings(
-  "Jacoco Coverage Report",
-  None,
-  JacocoThresholds(),
-  Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
-  "utf-8")
-jacocoExcludes := Seq("aview*")
-
