@@ -30,6 +30,6 @@ lazy val root = project
       JacocoThresholds(),
       Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
       "utf-8"),
-    jacocoExcludes := Seq("src/aview")
+    jacocoExcludes := Seq("aview*")
   )
   .enablePlugins(JacocoCoverallsPlugin)
