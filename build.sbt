@@ -38,6 +38,6 @@ jacocoReportSettings := JacocoReportSettings(
   None,
   JacocoThresholds(),
   Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
-  "utf-8"),
+  "utf-8")
 jacocoExcludes := Seq("aview*")
 
