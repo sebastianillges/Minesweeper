@@ -1,2 +1,2 @@
 ignore:
-  - "main/scala/de/htwg/se/minesweeper/aview"
+  - "de/htwg/se/minesweeper/aview"
