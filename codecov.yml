@@ -1,5 +1,4 @@
 codecov:
   disable_default_path_fixes: true
 ignore:
-  - "src/aview/SwingGui.scala"
-  - "src/aview/TUI.scala"
+  - "aview"
