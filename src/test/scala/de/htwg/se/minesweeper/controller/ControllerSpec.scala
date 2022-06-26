@@ -9,6 +9,7 @@ import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.*
 import de.htwg.se.minesweeper.model.FieldComponent.FieldBaseImpl.{Coordinates, Field}
 
 class ControllerSpec extends AnyWordSpec {
+
   "The controller" when {
     val field = new Field(3, 3)
     val controller = new Controller(field)
