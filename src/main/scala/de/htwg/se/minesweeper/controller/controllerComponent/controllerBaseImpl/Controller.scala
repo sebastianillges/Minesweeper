@@ -14,7 +14,7 @@ case class Controller @Inject() (var field: FieldInterface) extends ControllerIn
   val file = Guice.createInjector(new MinesweeperJson)
   val fileIO = file.getInstance(classOf[FileIOInterface])
 
-  def createNewField(string: String) =
+  def createNewField(string: String): FieldInterface =
     string match {
       case "1" =>
         field = DifficultyFactory.apply("1").run

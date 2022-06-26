@@ -38,7 +38,7 @@ class FileIOJson extends FileIOInterface:
     pw.write(Json.prettyPrint(fieldToJson(field)))
     pw.close()
 
-  def fieldToJson(field: FieldInterface) =
+  def fieldToJson(field: FieldInterface): JsObject =
     Json.obj(
       "field" -> Json.obj(
         "sizeRow" -> field.rows,
