@@ -171,3 +171,7 @@ case class Field(matrix: Matrix[Stone, Stone, Int]) extends FieldInterface:
     else if (string.equals(Stone.Six.toString)) then Stone.Six
     else if (string.equals(Stone.Seven.toString)) then Stone.Seven
     else Stone.Eight
+
+  def flagsLeft(): Int =
+    val help = field.detectBombs().size - field.detectFlags().size
+    help

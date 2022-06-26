@@ -71,7 +71,6 @@ case class Controller @Inject() (var field: FieldInterface) extends ControllerIn
     field
 
   def flagsLeft(): Int =
-    val help = field.detectBombs().size - field.detectFlags().size
-    help
+    field.flagsLeft()
 
   override def toString: String = field.toString

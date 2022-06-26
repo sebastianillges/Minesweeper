@@ -21,4 +21,5 @@ trait FieldInterface:
   def putValues(): FieldInterface
   def showValues(): FieldInterface
   def matrix: Matrix[Stone, Stone, Int]
+  def flagsLeft(): Int
   def toStone(string: String): Stone
