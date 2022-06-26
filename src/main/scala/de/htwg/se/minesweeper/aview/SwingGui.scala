@@ -87,7 +87,9 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/bomb.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/bomb.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/bomb.png")); preferredSize.setSize(600, 1200);
+        case 32 =>
+          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/bomb.png"));
+          preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
@@ -98,7 +100,9 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/flagged.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/flagged.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/flagged.png")); preferredSize.setSize(600, 1200);
+        case 32 =>
+          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/flagged.png"));
+          preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
@@ -109,7 +113,9 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/facingDown.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/facingDown.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/facingDown.png")); preferredSize.setSize(600, 1200);
+        case 32 =>
+          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/facingDown.png"));
+          preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
@@ -120,7 +126,9 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/0.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/0.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/0.png")); preferredSize.setSize(600, 1200);
+        case 32 =>
+          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/0.png"));
+          preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
@@ -131,7 +139,9 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/1.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/1.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/1.png")); preferredSize.setSize(600, 1200);
+        case 32 =>
+          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/1.png"));
+          preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
@@ -142,7 +152,9 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/2.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/2.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/2.png")); preferredSize.setSize(600, 1200);
+        case 32 =>
+          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/2.png"));
+          preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
@@ -153,7 +165,9 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/3.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/3.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/3.png")); preferredSize.setSize(600, 1200);
+        case 32 =>
+          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/3.png"));
+          preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
@@ -164,7 +178,9 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/4.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/4.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/4.png")); preferredSize.setSize(600, 1200);
+        case 32 =>
+          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/4.png"));
+          preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
@@ -175,7 +191,9 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/5.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/5.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/5.png")); preferredSize.setSize(600, 1200);
+        case 32 =>
+          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/5.png"));
+          preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
@@ -186,7 +204,9 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/6.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/6.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/6.png")); preferredSize.setSize(600, 1200);
+        case 32 =>
+          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/6.png"));
+          preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
@@ -197,7 +217,9 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/7.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/7.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/7.png")); preferredSize.setSize(600, 1200);
+        case 32 =>
+          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/7.png"));
+          preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
@@ -208,7 +230,9 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/8.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/8.png"))
-        case 32 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/8.png")); preferredSize.setSize(600, 1200);
+        case 32 =>
+          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/8.png"));
+          preferredSize.setSize(600, 1200);
       }
       buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
