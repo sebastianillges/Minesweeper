@@ -173,5 +173,5 @@ case class Field(matrix: Matrix[Stone, Stone, Int]) extends FieldInterface:
     else Stone.Eight
 
   def flagsLeft(): Int =
-    val help = field.detectBombs().size - field.detectFlags().size
+    val help = detectBombs().size - detectFlags().size
     help
