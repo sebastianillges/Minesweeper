@@ -81,9 +81,10 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
       )
 
   class CellButton(x: Int, y: Int, var stone: String) extends Button(stone):
+    this.peer.setText("")
+    var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/bomb.png"))
+    buttonIcon.getScaledInstance(10, 10, 10)
     if (this.stone.equals("✴")) then
-      this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/bomb.png"))
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/bomb.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/bomb.png"))
@@ -91,12 +92,8 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
           buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/bomb.png"));
           preferredSize.setSize(600, 1200);
       }
-      buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
-      this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("\u2691")) then
-      this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/flagged.png"))
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/flagged.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/flagged.png"))
@@ -104,12 +101,8 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
           buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/flagged.png"));
           preferredSize.setSize(600, 1200);
       }
-      buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
-      this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("\u25A0")) then
-      this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/facingDown.png"))
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/facingDown.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/facingDown.png"))
@@ -117,24 +110,16 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
           buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/facingDown.png"));
           preferredSize.setSize(600, 1200);
       }
-      buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
-      this.peer.setContentAreaFilled(false)
     else if (this.stone.equals("\u25A1")) then
-      this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/0.png"))
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/0.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/0.png"))
         case 32 =>
           buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/0.png")); preferredSize.setSize(600, 1200);
       }
-      buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
-      this.peer.setContentAreaFilled(false)
     else
-      this.peer.setText("")
-      var buttonIcon: BufferedImage = ImageIO.read(new File("src/main/resources/iconsEasy/" + stone + ".png"))
       controller.field.rows match {
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/" + stone + ".png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/" + stone + ".png"))
@@ -142,9 +127,7 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
           buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/" + stone + ".png"));
           preferredSize.setSize(600, 1200)
       }
-      buttonIcon.getScaledInstance(10, 10, 10)
       this.peer.setIcon(new ImageIcon(buttonIcon))
-      this.peer.setContentAreaFilled(false)
 
     listenTo(mouse.clicks)
     reactions += { case evt @ MouseClicked(src, pt, mod, clicks, props) =>
