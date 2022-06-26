@@ -14,7 +14,6 @@ lazy val root = project
     libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "2.1.0",
     libraryDependencies += ("com.typesafe.play" %% "play-json" % "2.10.0-RC5"),
     libraryDependencies ++= {
-      // Determine OS version of JavaFX binaries
       lazy val osName = System.getProperty("os.name") match {
         case n if n.startsWith("Linux")   => "linux"
         case n if n.startsWith("Mac")     => "mac"
@@ -29,7 +28,6 @@ lazy val root = project
       None,
       JacocoThresholds(),
       Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
-      "utf-8"),
-    jacocoExcludes := Seq("**/aview*")
+      "utf-8")
   )
   .enablePlugins(JacocoCoverallsPlugin)
