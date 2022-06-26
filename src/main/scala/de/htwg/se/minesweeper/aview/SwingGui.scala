@@ -66,7 +66,6 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
         contents = new BorderPanel {
           add(new Label("Flags left: " + controller.flagsLeft()), BorderPanel.Position.North)
           add(new CellPanel(controller.field.rows, controller.field.cols), BorderPanel.Position.Center)
-
         }
 
   class CellPanel(x: Int, y: Int) extends GridPanel(x, y):
@@ -90,7 +89,6 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/bomb.png"))
         case 32 =>
           buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/bomb.png"));
-          preferredSize.setSize(600, 1200);
       }
       this.peer.setIcon(new ImageIcon(buttonIcon))
     else if (this.stone.equals("\u2691")) then
@@ -99,7 +97,6 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/flagged.png"))
         case 32 =>
           buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/flagged.png"));
-          preferredSize.setSize(600, 1200);
       }
       this.peer.setIcon(new ImageIcon(buttonIcon))
     else if (this.stone.equals("\u25A0")) then
@@ -116,7 +113,7 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
         case 8  => buttonIcon = ImageIO.read(new File("src/main/resources/iconsEasy/0.png"))
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/0.png"))
         case 32 =>
-          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/0.png")); preferredSize.setSize(600, 1200);
+          buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/0.png"));
       }
       this.peer.setIcon(new ImageIcon(buttonIcon))
     else
@@ -125,7 +122,6 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer:
         case 16 => buttonIcon = ImageIO.read(new File("src/main/resources/iconsMedium/" + stone + ".png"))
         case 32 =>
           buttonIcon = ImageIO.read(new File("src/main/resources/iconsHard/" + stone + ".png"));
-          preferredSize.setSize(600, 1200)
       }
       this.peer.setIcon(new ImageIcon(buttonIcon))
 
