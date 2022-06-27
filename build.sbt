@@ -35,7 +35,7 @@ lazy val root = project
       "*aview.*",
       "*MinesweeperModule*",
       "*Minesweeper.scala",
-	  "*Minesweeper*",
+	  "*Main*",
 	  "*Coordinates*",
 	  "*Observer*"
     ),
