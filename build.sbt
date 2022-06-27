@@ -34,8 +34,7 @@ lazy val root = project
     jacocoExcludes := Seq(
       "*aview.*",
       "*MinesweeperModule*",
-      "*Minesweeper.scala",
-	  "*Main*",
+      "*Minesweeper*",
 	  "*Coordinates*",
 	  "*Observer*"
     ),
