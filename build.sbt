@@ -35,7 +35,9 @@ lazy val root = project
       "*aview.*",
       "*MinesweeperModule*",
       "*Minesweeper.scala",
-	  "*Minesweeper*"
+	  "*Minesweeper*",
+	  "*Coordinates*",
+	  "*Observer*"
     ),
   )
   .enablePlugins(JacocoCoverallsPlugin)
