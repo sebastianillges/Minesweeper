@@ -34,7 +34,8 @@ lazy val root = project
     jacocoExcludes := Seq(
       "*aview.*",
       "*MinesweeperModule*",
-      "*Minesweeper.scala"
+      "*Minesweeper.scala",
+	  "*Minesweeper*"
     ),
   )
   .enablePlugins(JacocoCoverallsPlugin)
