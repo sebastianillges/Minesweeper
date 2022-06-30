@@ -20,5 +20,5 @@ import scala.util.{Failure, Success, Try}
   val injector = Guice.createInjector(new MinesweeperModuleEasy)
   val controller = injector.getInstance(classOf[ControllerInterface])
   val tui = TUI(controller)
-  val swing = new SwingGui(controller)
+  // val swing = new SwingGui(controller)
   tui.run()
