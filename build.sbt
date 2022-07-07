@@ -11,7 +11,7 @@ lazy val root = project
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.12" % "test",
     libraryDependencies += ("org.scala-lang.modules" %% "scala-swing" % "3.0.0").cross(CrossVersion.for3Use2_13),
     libraryDependencies += "com.google.inject" % "guice" % "5.1.0",
-	libraryDependencies += ( "net.codingwell" %% "scala-guice" % "5.0.2" ).cross( CrossVersion.for3Use2_13 ),
+    libraryDependencies += ("net.codingwell" %% "scala-guice" % "5.0.2").cross(CrossVersion.for3Use2_13),
     libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "2.1.0",
     libraryDependencies += ("com.typesafe.play" %% "play-json" % "2.10.0-RC5"),
     libraryDependencies ++= {
@@ -30,13 +30,14 @@ lazy val root = project
       None,
       JacocoThresholds(),
       Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
-      "utf-8"),
+      "utf-8"
+    ),
     jacocoExcludes := Seq(
       "*aview.*",
       "*MinesweeperModule*",
-      "*Minesweeper*",
-	  "*Coordinates*",
-	  "*Observer*"
-    ),
+      "*Minesweeper.scala",
+      "*Coordinates.scala",
+      "*Observer.scala"
+    )
   )
   .enablePlugins(JacocoCoverallsPlugin)
